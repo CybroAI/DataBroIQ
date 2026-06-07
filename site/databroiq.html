@@ -1,1510 +1,3417 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DataBroIQ — Intelligent Business Analytics by Akash Yadav</title>
-<link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=Cabinet+Grotesk:wght@300;400;500;700;800&display=swap" rel="stylesheet">
-<style>
-/* ─── THEME VARIABLES ─── */
-[data-theme="light"] {
-  --bg: #f4f1ea;
-  --bg2: #eae6dc;
-  --bg3: #e0dbd0;
-  --surface: #ffffff;
-  --surface2: #f8f6f1;
-  --ink: #0c0e15;
-  --ink2: #2a2d38;
-  --muted: #6b7180;
-  --border: rgba(12,14,21,0.1);
-  --border2: rgba(12,14,21,0.06);
-  --accent: #1246f8;
-  --accent-rgb: 18,70,248;
-  --orange: #f85012;
-  --orange-rgb: 248,80,18;
-  --green: #00c98a;
-  --green-rgb: 0,201,138;
-  --gold: #e8c13a;
-  --gold-rgb: 232,193,58;
-  --shadow: 0 24px 64px rgba(12,14,21,0.1);
-  --shadow-lg: 0 40px 100px rgba(12,14,21,0.15);
-  --nav-bg: rgba(244,241,234,0.88);
-}
-[data-theme="dark"] {
-  --bg: #0b0d14;
-  --bg2: #10131e;
-  --bg3: #161926;
-  --surface: #13161f;
-  --surface2: #1a1e2e;
-  --ink: #eef0f8;
-  --ink2: #c8ccd8;
-  --muted: #6b7490;
-  --border: rgba(238,240,248,0.08);
-  --border2: rgba(238,240,248,0.04);
-  --accent: #4d80ff;
-  --accent-rgb: 77,128,255;
-  --orange: #ff6b3d;
-  --orange-rgb: 255,107,61;
-  --green: #00e09a;
-  --green-rgb: 0,224,154;
-  --gold: #f0cc4a;
-  --gold-rgb: 240,204,74;
-  --shadow: 0 24px 64px rgba(0,0,0,0.4);
-  --shadow-lg: 0 40px 100px rgba(0,0,0,0.6);
-  --nav-bg: rgba(11,13,20,0.88);
-}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DataBroIQ: Intelligent Business Analytics by Akash Yadav</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=Cabinet+Grotesk:wght@300;400;500;700;800&display=swap"
+    rel="stylesheet">
+  <style>
+    /* ─── THEME VARIABLES ─── */
+    [data-theme="light"] {
+      --bg: #f4f1ea;
+      --bg2: #eae6dc;
+      --bg3: #e0dbd0;
+      --surface: #ffffff;
+      --surface2: #f8f6f1;
+      --ink: #0c0e15;
+      --ink2: #2a2d38;
+      --muted: #6b7180;
+      --border: rgba(12, 14, 21, 0.1);
+      --border2: rgba(12, 14, 21, 0.06);
+      --accent: #1246f8;
+      --accent-rgb: 18, 70, 248;
+      --orange: #f85012;
+      --orange-rgb: 248, 80, 18;
+      --green: #00c98a;
+      --green-rgb: 0, 201, 138;
+      --gold: #e8c13a;
+      --gold-rgb: 232, 193, 58;
+      --shadow: 0 24px 64px rgba(12, 14, 21, 0.1);
+      --shadow-lg: 0 40px 100px rgba(12, 14, 21, 0.15);
+      --nav-bg: rgba(244, 241, 234, 0.88);
+    }
 
-/* ─── BASE ─── */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body {
-  font-family: 'Cabinet Grotesk', sans-serif;
-  background: var(--bg);
-  color: var(--ink);
-  overflow-x: hidden;
-  transition: background .3s, color .3s;
-  line-height: 1;
-}
-img { display: block; }
-a { text-decoration: none; }
+    [data-theme="dark"] {
+      --bg: #0b0d14;
+      --bg2: #10131e;
+      --bg3: #161926;
+      --surface: #13161f;
+      --surface2: #1a1e2e;
+      --ink: #eef0f8;
+      --ink2: #c8ccd8;
+      --muted: #6b7490;
+      --border: rgba(238, 240, 248, 0.08);
+      --border2: rgba(238, 240, 248, 0.04);
+      --accent: #4d80ff;
+      --accent-rgb: 77, 128, 255;
+      --orange: #ff6b3d;
+      --orange-rgb: 255, 107, 61;
+      --green: #00e09a;
+      --green-rgb: 0, 224, 154;
+      --gold: #f0cc4a;
+      --gold-rgb: 240, 204, 74;
+      --shadow: 0 24px 64px rgba(0, 0, 0, 0.4);
+      --shadow-lg: 0 40px 100px rgba(0, 0, 0, 0.6);
+      --nav-bg: rgba(11, 13, 20, 0.88);
+    }
 
-/* ─── SCROLLBAR ─── */
-::-webkit-scrollbar { width: 5px; }
-::-webkit-scrollbar-track { background: var(--bg); }
-::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 10px; }
+    /* ─── BASE ─── */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-/* ─── TYPOGRAPHY ─── */
-.display { font-family: 'Clash Display', sans-serif; }
+    html {
+      scroll-behavior: smooth;
+    }
 
-/* ─── NAV ─── */
-nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 0 5%; height: 68px;
-  background: var(--nav-bg);
-  backdrop-filter: blur(20px) saturate(180%);
-  border-bottom: 1px solid var(--border);
-  transition: background .3s, border-color .3s;
-}
-.logo {
-  font-family: 'Clash Display', sans-serif;
-  font-weight: 700; font-size: 1.35rem; letter-spacing: -0.4px;
-  color: var(--ink); display: flex; align-items: center; gap: 10px;
-}
-.logo-icon {
-  width: 34px; height: 34px; border-radius: 9px;
-  background: var(--accent); display: flex; align-items: center; justify-content: center;
-  animation: logoPulse 3s ease-in-out infinite;
-}
-@keyframes logoPulse { 0%,100%{box-shadow:0 0 0 0 rgba(var(--accent-rgb),.4)} 50%{box-shadow:0 0 0 8px rgba(var(--accent-rgb),0)} }
-.logo-icon svg { width: 18px; height: 18px; fill: none; stroke: white; stroke-width: 2; }
-.logo-text { color: var(--ink); }
-.logo-text span { color: var(--accent); }
-.nav-links { display: flex; gap: 4px; list-style: none; }
-.nav-links a {
-  font-size: .87rem; font-weight: 500; color: var(--muted);
-  padding: 7px 14px; border-radius: 8px;
-  transition: color .2s, background .2s;
-}
-.nav-links a:hover { color: var(--ink); background: var(--border2); }
-.nav-right { display: flex; align-items: center; gap: 12px; }
+    body {
+      font-family: 'Cabinet Grotesk', sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      overflow-x: hidden;
+      transition: background .3s, color .3s;
+      line-height: 1;
+    }
 
-/* Theme Toggle */
-.theme-toggle {
-  width: 40px; height: 40px; border-radius: 10px;
-  background: var(--surface2); border: 1px solid var(--border);
-  display: flex; align-items: center; justify-content: center;
-  cursor: pointer; transition: all .2s; color: var(--muted);
-}
-.theme-toggle:hover { color: var(--ink); border-color: var(--accent); }
-.theme-toggle svg { width: 18px; height: 18px; }
-.icon-sun { display: none; }
-.icon-moon { display: block; }
-[data-theme="dark"] .icon-sun { display: block; }
-[data-theme="dark"] .icon-moon { display: none; }
+    img {
+      display: block;
+    }
 
-.nav-cta {
-  background: var(--accent); color: #fff;
-  padding: 9px 22px; border-radius: 10px;
-  font-size: .87rem; font-weight: 700;
-  transition: all .2s; display: flex; align-items: center; gap: 6px;
-}
-.nav-cta:hover { opacity: .85; transform: translateY(-1px); }
-.nav-cta svg { width: 14px; height: 14px; }
+    a {
+      text-decoration: none;
+    }
 
-/* ─── HERO ─── */
-.hero {
-  min-height: 100vh; padding: 110px 5% 80px;
-  display: grid; grid-template-columns: 1fr 1fr;
-  align-items: center; gap: 60px;
-  position: relative; overflow: hidden;
-}
-.hero-bg-grid {
-  position: absolute; inset: 0; pointer-events: none;
-  background-image:
-    linear-gradient(var(--border2) 1px, transparent 1px),
-    linear-gradient(90deg, var(--border2) 1px, transparent 1px);
-  background-size: 40px 40px;
-  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
-}
-.hero-glow {
-  position: absolute; right: 5%; top: 15%;
-  width: 480px; height: 480px; border-radius: 50%;
-  background: radial-gradient(circle, rgba(var(--accent-rgb),.12) 0%, transparent 70%);
-  pointer-events: none; animation: glowDrift 8s ease-in-out infinite;
-}
-@keyframes glowDrift { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-20px,20px)} }
+    /* ─── SCROLLBAR ─── */
+    ::-webkit-scrollbar {
+      width: 5px;
+    }
 
-.hero-eyebrow {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: rgba(var(--accent-rgb),.08); border: 1px solid rgba(var(--accent-rgb),.2);
-  color: var(--accent); padding: 6px 14px; border-radius: 100px;
-  font-size: .78rem; font-weight: 700; letter-spacing: .8px;
-  text-transform: uppercase; margin-bottom: 28px;
-}
-.eyebrow-dot {
-  width: 6px; height: 6px; border-radius: 50%;
-  background: var(--accent); animation: blink 1.5s ease-in-out infinite;
-}
-@keyframes blink { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(.7)} }
-.hero h1 {
-  font-family: 'Clash Display', sans-serif;
-  font-size: clamp(3rem, 5.5vw, 5rem);
-  font-weight: 700; line-height: 1.0;
-  letter-spacing: -2.5px; margin-bottom: 28px;
-}
-.hero h1 .accent-word { color: var(--accent); }
-.hero h1 .highlight-word {
-  background: var(--gold); color: #0c0e15;
-  padding: 2px 10px; border-radius: 8px;
-  font-style: normal;
-}
-.hero-desc {
-  font-size: 1.05rem; color: var(--muted); line-height: 1.75;
-  max-width: 460px; margin-bottom: 40px; font-weight: 400;
-}
-.hero-btns { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 48px; }
-.btn-primary {
-  background: var(--accent); color: #fff;
-  padding: 14px 30px; border-radius: 12px;
-  font-size: .95rem; font-weight: 700;
-  display: inline-flex; align-items: center; gap: 8px;
-  transition: all .2s;
-}
-.btn-primary svg { width: 16px; height: 16px; transition: transform .2s; }
-.btn-primary:hover { opacity: .85; transform: translateY(-2px); box-shadow: 0 12px 32px rgba(var(--accent-rgb),.3); }
-.btn-primary:hover svg { transform: translateX(3px); }
-.btn-outline {
-  background: transparent; color: var(--ink);
-  padding: 14px 30px; border-radius: 12px;
-  font-size: .95rem; font-weight: 700;
-  border: 1.5px solid var(--border);
-  transition: all .2s; display: inline-flex; align-items: center; gap: 8px;
-}
-.btn-outline:hover { border-color: var(--ink); background: var(--surface); }
+    ::-webkit-scrollbar-track {
+      background: var(--bg);
+    }
 
-.hero-stats { display: flex; gap: 32px; flex-wrap: wrap; }
-.hstat { display: flex; flex-direction: column; gap: 4px; }
-.hstat-val { font-family: 'Clash Display', sans-serif; font-size: 1.8rem; font-weight: 700; }
-.hstat-val .green { color: var(--green); }
-.hstat-label { font-size: .78rem; color: var(--muted); font-weight: 500; letter-spacing: .3px; }
-.hstat-divider { width: 1px; background: var(--border); margin: 0 4px; }
+    ::-webkit-scrollbar-thumb {
+      background: var(--accent);
+      border-radius: 10px;
+    }
 
-/* Dashboard Mockup */
-.hero-visual { position: relative; z-index: 1; }
-.dash-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  padding: 22px;
-  box-shadow: var(--shadow-lg);
-  animation: floatCard 7s ease-in-out infinite;
-  transition: background .3s, border-color .3s;
-}
-@keyframes floatCard { 0%,100%{transform:translateY(0) rotate(-.5deg)} 50%{transform:translateY(-14px) rotate(.3deg)} }
-.dash-topbar {
-  display: flex; align-items: center; justify-content: space-between;
-  margin-bottom: 18px;
-}
-.dash-title-row { display: flex; align-items: center; gap: 8px; }
-.dash-title-row svg { width: 16px; height: 16px; color: var(--accent); }
-.dash-title { font-family: 'Clash Display', sans-serif; font-size: .9rem; font-weight: 600; }
-.dash-period {
-  font-size: .72rem; color: var(--muted);
-  background: var(--bg2); padding: 4px 10px; border-radius: 100px;
-  font-weight: 600;
-}
-.kpi-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-bottom: 18px; }
-.kpi {
-  background: var(--bg2); border-radius: 12px; padding: 13px;
-  border: 1px solid var(--border2);
-  transition: background .3s, border-color .3s;
-}
-.kpi-lbl { font-size: .67rem; color: var(--muted); margin-bottom: 5px; font-weight: 600; letter-spacing: .3px; text-transform: uppercase; }
-.kpi-val { font-family: 'Clash Display', sans-serif; font-weight: 700; font-size: 1.25rem; }
-.kpi-chg { font-size: .68rem; font-weight: 700; margin-top: 3px; display: flex; align-items: center; gap: 3px; }
-.kpi-chg.up { color: var(--green); }
-.kpi-chg.dn { color: var(--orange); }
-.kpi-chg svg { width: 10px; height: 10px; }
+    /* ─── TYPOGRAPHY ─── */
+    .display {
+      font-family: 'Clash Display', sans-serif;
+    }
 
-.bars { display: flex; align-items: flex-end; gap: 6px; height: 70px; margin-bottom: 14px; padding: 0 2px; }
-.bar {
-  flex: 1; border-radius: 5px 5px 0 0; min-width: 0;
-  animation: barRise .9s cubic-bezier(.34,1.56,.64,1) forwards;
-  transform-origin: bottom;
-}
-@keyframes barRise { from{transform:scaleY(0)} to{transform:scaleY(1)} }
-.bar:nth-child(1){ background: linear-gradient(180deg,rgba(var(--accent-rgb),1),rgba(var(--accent-rgb),.3)); height:45%; animation-delay:.05s; }
-.bar:nth-child(2){ background: linear-gradient(180deg,rgba(var(--orange-rgb),1),rgba(var(--orange-rgb),.3)); height:60%; animation-delay:.1s; }
-.bar:nth-child(3){ background: linear-gradient(180deg,rgba(var(--accent-rgb),1),rgba(var(--accent-rgb),.3)); height:78%; animation-delay:.15s; }
-.bar:nth-child(4){ background: linear-gradient(180deg,rgba(var(--green-rgb),1),rgba(var(--green-rgb),.3)); height:50%; animation-delay:.2s; }
-.bar:nth-child(5){ background: linear-gradient(180deg,rgba(var(--accent-rgb),1),rgba(var(--accent-rgb),.3)); height:90%; animation-delay:.25s; }
-.bar:nth-child(6){ background: linear-gradient(180deg,rgba(var(--gold-rgb),1),rgba(var(--gold-rgb),.3)); height:70%; animation-delay:.3s; }
-.bar:nth-child(7){ background: linear-gradient(180deg,rgba(var(--green-rgb),1),rgba(var(--green-rgb),.3)); height:100%; animation-delay:.35s; }
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 5%;
+      height: 68px;
+      background: var(--nav-bg);
+      backdrop-filter: blur(20px) saturate(180%);
+      border-bottom: 1px solid var(--border);
+      transition: background .3s, border-color .3s;
+    }
 
-.chip-row { display: flex; gap: 6px; flex-wrap: wrap; }
-.chip {
-  font-size: .69rem; font-weight: 700; padding: 4px 10px; border-radius: 100px;
-  border: 1px solid var(--border); color: var(--muted); cursor: default;
-  transition: all .2s;
-}
-.chip.on { background: var(--accent); color: #fff; border-color: var(--accent); }
+    .logo {
+      font-family: 'Clash Display', sans-serif;
+      font-weight: 700;
+      font-size: 1.35rem;
+      letter-spacing: -0.4px;
+      color: var(--ink);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
 
-/* Floating badge */
-.float-badge {
-  position: absolute; bottom: -18px; left: -20px;
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: 14px; padding: 14px 18px;
-  box-shadow: var(--shadow);
-  display: flex; align-items: center; gap: 12px;
-  animation: floatBadge 5s ease-in-out infinite;
-  transition: background .3s;
-}
-@keyframes floatBadge { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
-.fb-icon { font-size: 1.4rem; }
-.fb-text { display: flex; flex-direction: column; gap: 2px; }
-.fb-val { font-family: 'Clash Display', sans-serif; font-weight: 700; font-size: .95rem; color: var(--green); }
-.fb-lbl { font-size: .72rem; color: var(--muted); font-weight: 500; }
+    .logo-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 9px;
+      background: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: logoPulse 3s ease-in-out infinite;
+    }
 
-/* ─── TRUST STRIP ─── */
-.trust-strip {
-  background: var(--ink); color: var(--bg);
-  padding: 20px 5%;
-  display: flex; align-items: center; justify-content: center; gap: 40px;
-  flex-wrap: wrap; border-top: 1px solid var(--border2);
-  transition: background .3s;
-}
-.trust-label { font-size: .75rem; color: rgba(244,241,234,.45); letter-spacing: 1.5px; text-transform: uppercase; font-weight: 600; }
-.trust-items { display: flex; align-items: center; gap: 32px; flex-wrap: wrap; }
-.trust-item {
-  display: flex; align-items: center; gap: 8px;
-  font-family: 'Clash Display', sans-serif; font-weight: 600; font-size: .9rem;
-  opacity: .65;
-}
-.trust-item svg { width: 16px; height: 16px; flex-shrink: 0; }
+    @keyframes logoPulse {
 
-/* ─── SECTION SCAFFOLD ─── */
-.section { padding: 110px 5%; }
-.section-dark { background: var(--bg2); }
-.section-invert { background: var(--ink); }
-[data-theme="dark"] .section-invert { background: var(--bg2); }
+      0%,
+      100% {
+        box-shadow: 0 0 0 0 rgba(var(--accent-rgb), .4)
+      }
 
-.s-eyebrow {
-  font-size: .73rem; font-weight: 700; letter-spacing: 1.5px;
-  text-transform: uppercase; color: var(--accent);
-  display: flex; align-items: center; gap: 8px; margin-bottom: 14px;
-}
-.s-eyebrow::before { content: ''; width: 20px; height: 2px; background: var(--accent); border-radius: 2px; }
-.s-title {
-  font-family: 'Clash Display', sans-serif;
-  font-size: clamp(2rem, 3.8vw, 3.2rem);
-  font-weight: 700; line-height: 1.08;
-  letter-spacing: -1.5px; margin-bottom: 16px;
-}
-.s-sub {
-  font-size: 1.02rem; color: var(--muted); line-height: 1.72;
-  max-width: 520px; font-weight: 400;
-}
-.section-invert .s-title,
-.section-invert .s-eyebrow { color: var(--bg); }
-.section-invert .s-eyebrow { color: var(--gold); }
-.section-invert .s-sub { color: rgba(244,241,234,.5); }
+      50% {
+        box-shadow: 0 0 0 8px rgba(var(--accent-rgb), 0)
+      }
+    }
 
-/* ─── SERVICES ─── */
-.services-header { margin-bottom: 56px; }
-.services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px,1fr)); gap: 16px; }
-.svc-card {
-  background: rgba(255,255,255,.04);
-  border: 1px solid rgba(255,255,255,.08);
-  padding: 36px 30px; border-radius: 18px;
-  transition: all .3s; position: relative; overflow: hidden;
-  cursor: default;
-}
-.svc-card::after {
-  content: ''; position: absolute; top: 0; left: 0; right: 0;
-  height: 3px; background: var(--accent);
-  transform: scaleX(0); transform-origin: left; transition: transform .35s;
-}
-.svc-card:hover { background: rgba(255,255,255,.07); transform: translateY(-5px); }
-.svc-card:hover::after { transform: scaleX(1); }
-.svc-card:nth-child(2)::after { background: var(--orange); }
-.svc-card:nth-child(3)::after { background: var(--green); }
-.svc-card:nth-child(4)::after { background: var(--gold); }
+    .logo-icon svg {
+      width: 18px;
+      height: 18px;
+      fill: none;
+      stroke: white;
+      stroke-width: 2;
+    }
 
-.svc-icon {
-  width: 50px; height: 50px; border-radius: 13px;
-  background: rgba(var(--accent-rgb),.15);
-  display: flex; align-items: center; justify-content: center;
-  margin-bottom: 22px;
-}
-.svc-icon svg { width: 22px; height: 22px; stroke: var(--accent); fill: none; stroke-width: 1.8; }
-.svc-card:nth-child(2) .svc-icon { background: rgba(var(--orange-rgb),.15); }
-.svc-card:nth-child(2) .svc-icon svg { stroke: var(--orange); }
-.svc-card:nth-child(3) .svc-icon { background: rgba(var(--green-rgb),.15); }
-.svc-card:nth-child(3) .svc-icon svg { stroke: var(--green); }
-.svc-card:nth-child(4) .svc-icon { background: rgba(var(--gold-rgb),.15); }
-.svc-card:nth-child(4) .svc-icon svg { stroke: var(--gold); }
+    .logo-text {
+      color: var(--ink);
+    }
 
-.svc-card h3 {
-  font-family: 'Clash Display', sans-serif; font-size: 1.08rem; font-weight: 600;
-  color: rgba(244,241,234,.92); margin-bottom: 12px;
-}
-.svc-card p { font-size: .88rem; color: rgba(244,241,234,.45); line-height: 1.65; font-weight: 400; }
-.svc-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 22px; }
-.stag {
-  font-size: .68rem; font-weight: 700; padding: 4px 10px; border-radius: 100px;
-  border: 1px solid rgba(255,255,255,.1); color: rgba(255,255,255,.4); letter-spacing: .3px;
-}
+    .logo-text span {
+      color: var(--accent);
+    }
 
-/* ─── TECH STACK ─── */
-.tech-section { text-align: center; }
-.tech-section .s-title, .tech-section .s-eyebrow { margin-left: auto; margin-right: auto; }
-.tech-section .s-sub { margin: 0 auto 48px; }
-.tech-grid { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: center; }
-.tech-pill {
-  display: flex; align-items: center; gap: 10px;
-  background: var(--surface); border: 1px solid var(--border);
-  padding: 11px 20px; border-radius: 100px;
-  font-weight: 600; font-size: .88rem; color: var(--ink);
-  transition: all .2s; cursor: default;
-}
-.tech-pill:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(var(--accent-rgb),.12); }
-.tech-pill svg { width: 18px; height: 18px; flex-shrink: 0; }
+    .nav-links {
+      display: flex;
+      gap: 4px;
+      list-style: none;
+    }
 
-/* ─── INSIGHTS ─── */
-.insights-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 28px; align-items: start; }
-.insight-panel {
-  background: var(--bg2); border-radius: 24px; padding: 48px 44px;
-  border: 1px solid var(--border);
-  transition: background .3s, border-color .3s;
-}
-.insight-panel .s-eyebrow { color: var(--accent); }
-.insight-panel .s-title { font-size: clamp(1.7rem,2.8vw,2.4rem); }
-.insight-panel .s-sub { margin-bottom: 36px; }
+    .nav-links a {
+      font-size: .87rem;
+      font-weight: 500;
+      color: var(--muted);
+      padding: 7px 14px;
+      border-radius: 8px;
+      transition: color .2s, background .2s;
+    }
 
-.insight-list { list-style: none; display: flex; flex-direction: column; gap: 0; }
-.iitem {
-  display: flex; align-items: flex-start; gap: 16px;
-  padding: 20px 0; border-bottom: 1px solid var(--border2);
-}
-.iitem:last-child { border: none; padding-bottom: 0; }
-.iitem-num {
-  font-family: 'Clash Display', sans-serif; font-weight: 700; font-size: 1.5rem;
-  color: var(--accent); flex-shrink: 0; line-height: 1; min-width: 32px;
-}
-.iitem strong { display: block; font-size: .9rem; font-weight: 700; margin-bottom: 4px; }
-.iitem span { font-size: .83rem; color: var(--muted); line-height: 1.55; font-weight: 400; }
+    .nav-links a:hover {
+      color: var(--ink);
+      background: var(--border2);
+    }
 
-.insight-cards { display: flex; flex-direction: column; gap: 14px; }
-.icard {
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: 16px; padding: 22px;
-  transition: all .25s;
-}
-.icard:hover { border-color: var(--accent); transform: translateX(5px); }
-.icard-head { display: flex; align-items: center; gap: 11px; margin-bottom: 9px; }
-.icard-icon {
-  width: 38px; height: 38px; border-radius: 10px;
-  background: rgba(var(--accent-rgb),.08); border: 1px solid rgba(var(--accent-rgb),.15);
-  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
-}
-.icard-icon svg { width: 17px; height: 17px; stroke: var(--accent); fill: none; stroke-width: 2; }
-.icard:nth-child(2) .icard-icon { background: rgba(var(--orange-rgb),.08); border-color: rgba(var(--orange-rgb),.15); }
-.icard:nth-child(2) .icard-icon svg { stroke: var(--orange); }
-.icard:nth-child(3) .icard-icon { background: rgba(var(--green-rgb),.08); border-color: rgba(var(--green-rgb),.15); }
-.icard:nth-child(3) .icard-icon svg { stroke: var(--green); }
-.icard:nth-child(4) .icard-icon { background: rgba(var(--gold-rgb),.1); border-color: rgba(var(--gold-rgb),.2); }
-.icard:nth-child(4) .icard-icon svg { stroke: var(--gold); }
-.icard-title { font-family: 'Clash Display', sans-serif; font-weight: 600; font-size: .95rem; }
-.icard-body { font-size: .82rem; color: var(--muted); line-height: 1.6; }
-.icard-metric {
-  display: inline-flex; align-items: center; gap: 5px;
-  margin-top: 10px; font-size: .73rem; font-weight: 700; color: var(--green);
-  background: rgba(var(--green-rgb),.08); border: 1px solid rgba(var(--green-rgb),.2);
-  padding: 4px 10px; border-radius: 100px;
-}
-.icard-metric svg { width: 11px; height: 11px; }
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
 
-/* ─── REPORTING ─── */
-.report-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 20px; }
-.rcard {
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: 20px; padding: 28px; position: relative; overflow: hidden;
-  transition: all .25s;
-}
-.rcard:hover { box-shadow: var(--shadow); transform: translateY(-3px); }
-.rcard-badge {
-  position: absolute; top: 20px; right: 20px;
-  font-size: .68rem; font-weight: 700; padding: 4px 12px; border-radius: 100px;
-  text-transform: uppercase; letter-spacing: .6px;
-}
-.badge-d { background: rgba(var(--accent-rgb),.1); color: var(--accent); }
-.badge-m { background: rgba(var(--green-rgb),.1); color: var(--green); }
-.badge-q { background: rgba(var(--gold-rgb),.12); color: #8a7200; }
-[data-theme="dark"] .badge-q { color: var(--gold); }
-.badge-y { background: rgba(var(--orange-rgb),.1); color: var(--orange); }
-.rcard-icon {
-  width: 44px; height: 44px; border-radius: 11px; margin-bottom: 18px;
-  display: flex; align-items: center; justify-content: center;
-  background: rgba(var(--accent-rgb),.08); border: 1px solid rgba(var(--accent-rgb),.12);
-}
-.rcard:nth-child(2) .rcard-icon { background: rgba(var(--green-rgb),.08); border-color: rgba(var(--green-rgb),.12); }
-.rcard:nth-child(3) .rcard-icon { background: rgba(var(--gold-rgb),.1); border-color: rgba(var(--gold-rgb),.15); }
-.rcard:nth-child(4) .rcard-icon { background: rgba(var(--orange-rgb),.08); border-color: rgba(var(--orange-rgb),.12); }
-.rcard-icon svg { width: 20px; height: 20px; fill: none; stroke-width: 1.8; stroke: var(--accent); }
-.rcard:nth-child(2) .rcard-icon svg { stroke: var(--green); }
-.rcard:nth-child(3) .rcard-icon svg { stroke: var(--gold); }
-.rcard:nth-child(4) .rcard-icon svg { stroke: var(--orange); }
-.rcard h4 { font-family: 'Clash Display', sans-serif; font-weight: 600; font-size: 1rem; margin-bottom: 8px; }
-.rcard > p { font-size: .85rem; color: var(--muted); line-height: 1.62; margin-bottom: 20px; }
-.rfeats { list-style: none; display: flex; flex-direction: column; gap: 7px; }
-.rfeats li {
-  font-size: .82rem; color: var(--muted);
-  display: flex; align-items: center; gap: 9px;
-}
-.rfeats li svg { width: 15px; height: 15px; stroke: var(--green); fill: none; stroke-width: 2.5; flex-shrink: 0; }
-.prog-row { margin-top: 16px; }
-.prog-row-top { display: flex; justify-content: space-between; font-size: .73rem; color: var(--muted); margin-bottom: 7px; font-weight: 600; }
-.prog-bar { height: 5px; background: var(--bg2); border-radius: 100px; overflow: hidden; }
-.prog-fill { height: 100%; border-radius: 100px; }
+    /* Theme Toggle */
+    .theme-toggle {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all .2s;
+      color: var(--muted);
+    }
 
-/* ─── INDUSTRIES ─── */
-.ind-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
-.ind-card {
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: 22px; padding: 34px 28px;
-  transition: all .3s; position: relative; overflow: hidden;
-}
-.ind-card::before {
-  content: ''; position: absolute; bottom: 0; left: 0; right: 0;
-  height: 3px; border-radius: 0 0 22px 22px;
-}
-.ind-card.bank::before { background: var(--accent); }
-.ind-card.grocery::before { background: var(--green); }
-.ind-card.clinic::before { background: var(--orange); }
-.ind-card:hover { transform: translateY(-6px); box-shadow: var(--shadow); }
-.ind-icon-wrap {
-  width: 56px; height: 56px; border-radius: 15px; margin-bottom: 22px;
-  display: flex; align-items: center; justify-content: center; font-size: 1.6rem;
-}
-.ind-card.bank .ind-icon-wrap { background: rgba(var(--accent-rgb),.1); }
-.ind-card.grocery .ind-icon-wrap { background: rgba(var(--green-rgb),.1); }
-.ind-card.clinic .ind-icon-wrap { background: rgba(var(--orange-rgb),.1); }
-.ind-card h3 { font-family: 'Clash Display', sans-serif; font-weight: 700; font-size: 1.1rem; margin-bottom: 10px; }
-.ind-card > p { font-size: .87rem; color: var(--muted); line-height: 1.65; margin-bottom: 22px; }
-.use-cases { display: flex; flex-direction: column; gap: 10px; }
-.uc {
-  display: flex; align-items: flex-start; gap: 10px;
-  padding: 12px 14px; border-radius: 12px;
-  background: var(--bg2); border: 1px solid var(--border2);
-  transition: background .3s;
-}
-.uc-icon {
-  width: 30px; height: 30px; border-radius: 8px; flex-shrink: 0;
-  display: flex; align-items: center; justify-content: center;
-}
-.ind-card.bank .uc-icon { background: rgba(var(--accent-rgb),.1); }
-.ind-card.grocery .uc-icon { background: rgba(var(--green-rgb),.1); }
-.ind-card.clinic .uc-icon { background: rgba(var(--orange-rgb),.1); }
-.uc-icon svg { width: 14px; height: 14px; fill: none; stroke-width: 2; }
-.ind-card.bank .uc-icon svg { stroke: var(--accent); }
-.ind-card.grocery .uc-icon svg { stroke: var(--green); }
-.ind-card.clinic .uc-icon svg { stroke: var(--orange); }
-.uc-text strong { display: block; font-size: .82rem; font-weight: 700; margin-bottom: 2px; }
-.uc-text span { font-size: .78rem; color: var(--muted); line-height: 1.45; }
+    .theme-toggle:hover {
+      color: var(--ink);
+      border-color: var(--accent);
+    }
 
-/* ─── SECURITY ─── */
-.security-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
-.sec-visual {
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: 24px; padding: 44px; text-align: center;
-  transition: background .3s;
-}
-.shield-wrap { position: relative; display: inline-block; margin-bottom: 28px; }
-.shield-main { font-size: 5rem; line-height: 1; filter: drop-shadow(0 8px 24px rgba(var(--green-rgb),.3)); }
-.shield-check {
-  position: absolute; top: -4px; right: -6px;
-  width: 28px; height: 28px; border-radius: 50%;
-  background: var(--green); border: 3px solid var(--surface);
-  display: flex; align-items: center; justify-content: center;
-}
-.shield-check svg { width: 13px; height: 13px; stroke: #fff; fill: none; stroke-width: 3; }
-.sec-uptime { font-family: 'Clash Display', sans-serif; font-weight: 700; font-size: 3.4rem; }
-.sec-uptime-lbl { font-size: .82rem; color: var(--muted); margin-bottom: 28px; font-weight: 500; }
-.sec-list { display: flex; flex-direction: column; gap: 10px; text-align: left; }
-.sec-row {
-  display: flex; align-items: center; gap: 12px;
-  padding: 11px 14px; background: var(--bg2); border-radius: 11px;
-  border: 1px solid var(--border2); font-size: .84rem; font-weight: 500;
-  transition: background .3s;
-}
-.sec-row svg { width: 16px; height: 16px; flex-shrink: 0; stroke: var(--green); fill: none; stroke-width: 2; }
-.sec-content .s-sub { margin-bottom: 28px; }
-.checkfeats { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 32px; }
-.checkfeats li {
-  display: flex; align-items: flex-start; gap: 10px;
-  font-size: .87rem; color: var(--muted); line-height: 1.5;
-}
-.checkfeats li svg { width: 16px; height: 16px; stroke: var(--green); fill: none; stroke-width: 2.5; flex-shrink: 0; margin-top: 2px; }
-.comp-row { display: flex; flex-wrap: wrap; gap: 10px; }
-.cbadge {
-  padding: 7px 15px; border-radius: 8px; font-size: .76rem; font-weight: 700; letter-spacing: .5px;
-}
-.cbadge.blue { background: rgba(var(--accent-rgb),.08); color: var(--accent); border: 1px solid rgba(var(--accent-rgb),.2); }
-.cbadge.green { background: rgba(var(--green-rgb),.08); color: var(--green); border: 1px solid rgba(var(--green-rgb),.2); }
-.cbadge.gold { background: rgba(var(--gold-rgb),.1); color: #8a7200; border: 1px solid rgba(var(--gold-rgb),.25); }
-[data-theme="dark"] .cbadge.gold { color: var(--gold); }
+    .theme-toggle svg {
+      width: 18px;
+      height: 18px;
+    }
 
-/* ─── PROCESS ─── */
-.process-track { display: grid; grid-template-columns: repeat(5,1fr); position: relative; margin-top: 64px; }
-.process-line {
-  position: absolute; top: 28px; left: 10%; right: 10%;
-  height: 1px; background: var(--border);
-}
-.process-line-fill {
-  height: 100%; background: var(--accent); border-radius: 2px;
-  animation: lineFill 2s ease-out 0.5s forwards; transform-origin: left; transform: scaleX(0);
-}
-@keyframes lineFill { to{transform:scaleX(1)} }
-.pstep { padding: 0 12px 0; text-align: center; }
-.pstep-num {
-  width: 56px; height: 56px; border-radius: 50%;
-  background: var(--surface); border: 2px solid var(--border);
-  display: flex; align-items: center; justify-content: center;
-  font-family: 'Clash Display', sans-serif; font-weight: 700; font-size: 1.1rem;
-  color: var(--accent); margin: 0 auto 22px;
-  position: relative; z-index: 2;
-  transition: all .25s;
-}
-.pstep-num svg { width: 22px; height: 22px; stroke: var(--accent); fill: none; stroke-width: 2; }
-.pstep:hover .pstep-num { background: var(--accent); border-color: var(--accent); transform: scale(1.1); }
-.pstep:hover .pstep-num svg { stroke: #fff; }
-.pstep h4 { font-family: 'Clash Display', sans-serif; font-size: .92rem; font-weight: 600; margin-bottom: 8px; }
-.pstep p { font-size: .8rem; color: var(--muted); line-height: 1.6; font-weight: 400; }
+    .icon-sun {
+      display: none;
+    }
 
-/* ─── STATS ─── */
-.stats-section { background: var(--accent); }
-.stats-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 0; }
-.stat-cell {
-  padding: 64px 40px; text-align: center;
-  border-right: 1px solid rgba(255,255,255,.15);
-}
-.stat-cell:last-child { border: none; }
-.stat-num { font-family: 'Clash Display', sans-serif; font-weight: 700; font-size: 3.4rem; color: #fff; margin-bottom: 8px; line-height: 1; }
-.stat-lbl { font-size: .85rem; color: rgba(255,255,255,.65); font-weight: 500; }
+    .icon-moon {
+      display: block;
+    }
 
-/* ─── FOUNDER ─── */
-.founder-section { background: var(--bg); }
-.founder-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
-.founder-visual {
-  position: relative; display: flex; align-items: center; justify-content: center;
-}
-.founder-avatar {
-  width: 280px; height: 280px; border-radius: 50%;
-  background: linear-gradient(135deg, rgba(var(--accent-rgb),.2), rgba(var(--green-rgb),.15));
-  border: 2px solid var(--border);
-  display: flex; align-items: center; justify-content: center;
-  font-family: 'Clash Display', sans-serif; font-weight: 700; font-size: 5rem;
-  color: var(--accent); position: relative;
-  box-shadow: 0 0 0 12px rgba(var(--accent-rgb),.05), 0 0 0 24px rgba(var(--accent-rgb),.03);
-}
-.founder-name-plate {
-  position: absolute; bottom: -16px; left: 50%; transform: translateX(-50%);
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: 14px; padding: 12px 22px; text-align: center;
-  white-space: nowrap; box-shadow: var(--shadow);
-}
-.fnp-name { font-family: 'Clash Display', sans-serif; font-weight: 700; font-size: 1.1rem; }
-.fnp-role { font-size: .75rem; color: var(--accent); font-weight: 600; letter-spacing: .5px; margin-top: 2px; }
-.founder-badges {
-  position: absolute; top: 20px; right: -20px;
-  display: flex; flex-direction: column; gap: 8px;
-}
-.fbadge {
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: 10px; padding: 8px 12px;
-  font-size: .73rem; font-weight: 700; color: var(--ink);
-  display: flex; align-items: center; gap: 6px; white-space: nowrap;
-  box-shadow: var(--shadow);
-}
-.fbadge svg { width: 14px; height: 14px; flex-shrink: 0; }
+    [data-theme="dark"] .icon-sun {
+      display: block;
+    }
 
-.founder-content .s-sub { margin-bottom: 28px; }
-.founder-quote {
-  background: var(--bg2); border-left: 3px solid var(--accent);
-  padding: 20px 24px; border-radius: 0 14px 14px 0; margin-bottom: 32px;
-}
-.founder-quote p { font-size: .95rem; font-style: italic; color: var(--ink2); line-height: 1.7; font-weight: 400; }
-.founder-quote cite { font-size: .8rem; color: var(--muted); font-style: normal; font-weight: 700; }
-.founder-links { display: flex; gap: 12px; flex-wrap: wrap; }
-.flink {
-  display: flex; align-items: center; gap: 8px;
-  padding: 10px 18px; border-radius: 10px; font-size: .85rem; font-weight: 600;
-  border: 1.5px solid var(--border); color: var(--ink); transition: all .2s;
-}
-.flink svg { width: 16px; height: 16px; }
-.flink:hover { border-color: var(--accent); color: var(--accent); }
-.flink.primary { background: var(--accent); color: #fff; border-color: var(--accent); }
-.flink.primary:hover { opacity: .85; }
+    [data-theme="dark"] .icon-moon {
+      display: none;
+    }
 
-/* ─── CONTACT / CTA ─── */
-.cta-section {
-  background: var(--ink); padding: 120px 5%;
-  position: relative; overflow: hidden; text-align: center;
-  transition: background .3s;
-}
-[data-theme="dark"] .cta-section { background: var(--bg2); border-top: 1px solid var(--border); }
-.cta-glow {
-  position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%);
-  width: 700px; height: 700px; border-radius: 50%;
-  background: radial-gradient(circle, rgba(var(--accent-rgb),.18) 0%, transparent 65%);
-  pointer-events: none;
-}
-.cta-section .s-title { color: #eef0f8; font-size: clamp(2.2rem,4vw,3.4rem); }
-.cta-section .s-eyebrow { color: var(--gold); justify-content: center; }
-.cta-section .s-eyebrow::before { background: var(--gold); }
-.cta-section .s-sub { color: rgba(238,240,248,.45); margin: 0 auto 48px; text-align: center; }
+    .nav-cta {
+      background: var(--accent);
+      color: #fff;
+      padding: 9px 22px;
+      border-radius: 10px;
+      font-size: .87rem;
+      font-weight: 700;
+      transition: all .2s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
 
-.form-card {
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: 24px; padding: 44px 48px;
-  max-width: 620px; margin: 0 auto;
-  text-align: left; position: relative; z-index: 2;
-  box-shadow: var(--shadow-lg);
-  transition: background .3s;
-}
-.form-card h3 {
-  font-family: 'Clash Display', sans-serif; font-size: 1.5rem; font-weight: 700;
-  text-align: center; margin-bottom: 32px;
-}
-.frow { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
-.fgroup label { display: block; font-size: .82rem; font-weight: 700; color: var(--muted); margin-bottom: 7px; letter-spacing: .3px; }
-.finput, .fselect {
-  width: 100%; padding: 13px 15px;
-  border: 1.5px solid var(--border); border-radius: 10px;
-  font-family: 'Cabinet Grotesk', sans-serif; font-size: .93rem;
-  outline: none; background: var(--bg2); color: var(--ink);
-  transition: border-color .2s, background .2s;
-}
-.finput:focus, .fselect:focus { border-color: var(--accent); background: var(--surface); box-shadow: 0 0 0 3px rgba(var(--accent-rgb),.1); }
-.fselect { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236b7180' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 36px; }
-.phone-group { display: flex; gap: 8px; }
-.phone-pfx { background: var(--bg3); border: 1.5px solid var(--border); border-radius: 10px; padding: 13px 14px; font-size: .93rem; font-weight: 700; color: var(--muted); white-space: nowrap; }
-.btn-submit {
-  width: 100%; margin-top: 6px; padding: 15px;
-  background: var(--accent); color: #fff; border: none; border-radius: 12px;
-  font-family: 'Clash Display', sans-serif; font-size: 1rem; font-weight: 700;
-  cursor: pointer; transition: all .2s; display: flex; align-items: center; justify-content: center; gap: 8px;
-}
-.btn-submit svg { width: 16px; height: 16px; }
-.btn-submit:hover { opacity: .85; transform: translateY(-2px); box-shadow: 0 12px 32px rgba(var(--accent-rgb),.3); }
-.form-privacy { text-align: center; font-size: .77rem; color: var(--muted); margin-top: 14px; display: flex; align-items: center; justify-content: center; gap: 6px; }
-.form-privacy svg { width: 13px; height: 13px; stroke: var(--green); fill: none; stroke-width: 2; }
+    .nav-cta:hover {
+      opacity: .85;
+      transform: translateY(-1px);
+    }
 
-/* ─── FOOTER ─── */
-footer {
-  background: var(--ink); color: rgba(244,241,234,.4);
-  padding: 72px 5% 36px; border-top: 1px solid rgba(244,241,234,.06);
-  transition: background .3s;
-}
-[data-theme="dark"] footer { background: var(--bg); border-top: 1px solid var(--border); }
-.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 56px; }
-.footer-brand .logo { color: rgba(244,241,234,.85); margin-bottom: 14px; }
-.footer-brand > p { font-size: .84rem; line-height: 1.72; max-width: 260px; font-weight: 400; }
-.footer-col h5 {
-  font-family: 'Clash Display', sans-serif; font-size: .88rem; font-weight: 700;
-  color: rgba(244,241,234,.85); margin-bottom: 16px; letter-spacing: .5px;
-}
-.footer-col a { display: block; font-size: .84rem; margin-bottom: 10px; transition: color .2s; }
-.footer-col a:hover { color: rgba(244,241,234,.9); }
-.footer-bottom {
-  padding-top: 28px; border-top: 1px solid rgba(244,241,234,.08);
-  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px;
-}
-.footer-bottom span { font-size: .79rem; }
-.footer-made-by { display: flex; align-items: center; gap: 6px; font-size: .79rem; }
-.footer-made-by svg { width: 14px; height: 14px; }
+    .nav-cta svg {
+      width: 14px;
+      height: 14px;
+    }
 
-/* ─── REVEAL ─── */
-.reveal { opacity: 0; transform: translateY(28px); transition: opacity .65s ease, transform .65s ease; }
-.reveal.in { opacity: 1; transform: translateY(0); }
+    /* ─── HERO ─── */
+    .hero {
+      min-height: 100vh;
+      padding: 110px 5% 80px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 60px;
+      position: relative;
+      overflow: hidden;
+    }
 
-/* ─── RESPONSIVE ─── */
-@media(max-width:1100px) {
-  .ind-grid { grid-template-columns: 1fr 1fr; }
-  .founder-grid { gap: 48px; }
-}
-@media(max-width:900px) {
-  .hero { grid-template-columns: 1fr; padding-top: 96px; }
-  .hero-visual { display: none; }
-  .insights-grid, .security-grid, .founder-grid { grid-template-columns: 1fr; }
-  .report-grid { grid-template-columns: 1fr; }
-  .stats-grid { grid-template-columns: 1fr 1fr; }
-  .stat-cell { border-right: none; border-bottom: 1px solid rgba(255,255,255,.15); }
-  .stat-cell:nth-child(odd) { border-right: 1px solid rgba(255,255,255,.15); }
-  .footer-grid { grid-template-columns: 1fr 1fr; }
-  .nav-links { display: none; }
-  .process-track { grid-template-columns: 1fr; gap: 24px; }
-  .process-line { display: none; }
-}
-@media(max-width:640px) {
-  .ind-grid, .stats-grid, .footer-grid { grid-template-columns: 1fr; }
-  .stat-cell { border-right: none; }
-  .frow { grid-template-columns: 1fr; }
-  .form-card { padding: 28px 24px; }
-  .founder-badges { display: none; }
-}
-</style>
+    .hero-bg-grid {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(var(--border2) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border2) 1px, transparent 1px);
+      background-size: 40px 40px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
+    }
+
+    .hero-glow {
+      position: absolute;
+      right: 5%;
+      top: 15%;
+      width: 480px;
+      height: 480px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(var(--accent-rgb), .12) 0%, transparent 70%);
+      pointer-events: none;
+      animation: glowDrift 8s ease-in-out infinite;
+    }
+
+    @keyframes glowDrift {
+
+      0%,
+      100% {
+        transform: translate(0, 0)
+      }
+
+      50% {
+        transform: translate(-20px, 20px)
+      }
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(var(--accent-rgb), .08);
+      border: 1px solid rgba(var(--accent-rgb), .2);
+      color: var(--accent);
+      padding: 6px 14px;
+      border-radius: 100px;
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .8px;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+
+    .eyebrow-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      animation: blink 1.5s ease-in-out infinite;
+    }
+
+    @keyframes blink {
+
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1)
+      }
+
+      50% {
+        opacity: .4;
+        transform: scale(.7)
+      }
+    }
+
+    .hero h1 {
+      font-family: 'Clash Display', sans-serif;
+      font-size: clamp(3rem, 5.5vw, 5rem);
+      font-weight: 700;
+      line-height: 1.0;
+      letter-spacing: -2.5px;
+      margin-bottom: 28px;
+    }
+
+    .hero h1 .accent-word {
+      color: var(--accent);
+    }
+
+    .hero h1 .highlight-word {
+      background: var(--gold);
+      color: #0c0e15;
+      padding: 2px 10px;
+      border-radius: 8px;
+      font-style: normal;
+    }
+
+    .hero-desc {
+      font-size: 1.05rem;
+      color: var(--muted);
+      line-height: 1.75;
+      max-width: 460px;
+      margin-bottom: 40px;
+      font-weight: 400;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 48px;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+      padding: 14px 30px;
+      border-radius: 12px;
+      font-size: .95rem;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all .2s;
+    }
+
+    .btn-primary svg {
+      width: 16px;
+      height: 16px;
+      transition: transform .2s;
+    }
+
+    .btn-primary:hover {
+      opacity: .85;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(var(--accent-rgb), .3);
+    }
+
+    .btn-primary:hover svg {
+      transform: translateX(3px);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--ink);
+      padding: 14px 30px;
+      border-radius: 12px;
+      font-size: .95rem;
+      font-weight: 700;
+      border: 1.5px solid var(--border);
+      transition: all .2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-outline:hover {
+      border-color: var(--ink);
+      background: var(--surface);
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+
+    .hstat {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .hstat-val {
+      font-family: 'Clash Display', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+    }
+
+    .hstat-val .green {
+      color: var(--green);
+    }
+
+    .hstat-label {
+      font-size: .78rem;
+      color: var(--muted);
+      font-weight: 500;
+      letter-spacing: .3px;
+    }
+
+    .hstat-divider {
+      width: 1px;
+      background: var(--border);
+      margin: 0 4px;
+    }
+
+    /* Dashboard Mockup */
+    .hero-visual {
+      position: relative;
+      z-index: 1;
+    }
+
+    .dash-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 22px;
+      box-shadow: var(--shadow-lg);
+      animation: floatCard 7s ease-in-out infinite;
+      transition: background .3s, border-color .3s;
+    }
+
+    @keyframes floatCard {
+
+      0%,
+      100% {
+        transform: translateY(0) rotate(-.5deg)
+      }
+
+      50% {
+        transform: translateY(-14px) rotate(.3deg)
+      }
+    }
+
+    .dash-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 18px;
+    }
+
+    .dash-title-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .dash-title-row svg {
+      width: 16px;
+      height: 16px;
+      color: var(--accent);
+    }
+
+    .dash-title {
+      font-family: 'Clash Display', sans-serif;
+      font-size: .9rem;
+      font-weight: 600;
+    }
+
+    .dash-period {
+      font-size: .72rem;
+      color: var(--muted);
+      background: var(--bg2);
+      padding: 4px 10px;
+      border-radius: 100px;
+      font-weight: 600;
+    }
+
+    .kpi-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .kpi {
+      background: var(--bg2);
+      border-radius: 12px;
+      padding: 13px;
+      border: 1px solid var(--border2);
+      transition: background .3s, border-color .3s;
+    }
+
+    .kpi-lbl {
+      font-size: .67rem;
+      color: var(--muted);
+      margin-bottom: 5px;
+      font-weight: 600;
+      letter-spacing: .3px;
+      text-transform: uppercase;
+    }
+
+    .kpi-val {
+      font-family: 'Clash Display', sans-serif;
+      font-weight: 700;
+      font-size: 1.25rem;
+    }
+
+    .kpi-chg {
+      font-size: .68rem;
+      font-weight: 700;
+      margin-top: 3px;
+      display: flex;
+      align-items: center;
+      gap: 3px;
+    }
+
+    .kpi-chg.up {
+      color: var(--green);
+    }
+
+    .kpi-chg.dn {
+      color: var(--orange);
+    }
+
+    .kpi-chg svg {
+      width: 10px;
+      height: 10px;
+    }
+
+    .bars {
+      display: flex;
+      align-items: flex-end;
+      gap: 6px;
+      height: 70px;
+      margin-bottom: 14px;
+      padding: 0 2px;
+    }
+
+    .bar {
+      flex: 1;
+      border-radius: 5px 5px 0 0;
+      min-width: 0;
+      animation: barRise .9s cubic-bezier(.34, 1.56, .64, 1) forwards;
+      transform-origin: bottom;
+    }
+
+    @keyframes barRise {
+      from {
+        transform: scaleY(0)
+      }
+
+      to {
+        transform: scaleY(1)
+      }
+    }
+
+    .bar:nth-child(1) {
+      background: linear-gradient(180deg, rgba(var(--accent-rgb), 1), rgba(var(--accent-rgb), .3));
+      height: 45%;
+      animation-delay: .05s;
+    }
+
+    .bar:nth-child(2) {
+      background: linear-gradient(180deg, rgba(var(--orange-rgb), 1), rgba(var(--orange-rgb), .3));
+      height: 60%;
+      animation-delay: .1s;
+    }
+
+    .bar:nth-child(3) {
+      background: linear-gradient(180deg, rgba(var(--accent-rgb), 1), rgba(var(--accent-rgb), .3));
+      height: 78%;
+      animation-delay: .15s;
+    }
+
+    .bar:nth-child(4) {
+      background: linear-gradient(180deg, rgba(var(--green-rgb), 1), rgba(var(--green-rgb), .3));
+      height: 50%;
+      animation-delay: .2s;
+    }
+
+    .bar:nth-child(5) {
+      background: linear-gradient(180deg, rgba(var(--accent-rgb), 1), rgba(var(--accent-rgb), .3));
+      height: 90%;
+      animation-delay: .25s;
+    }
+
+    .bar:nth-child(6) {
+      background: linear-gradient(180deg, rgba(var(--gold-rgb), 1), rgba(var(--gold-rgb), .3));
+      height: 70%;
+      animation-delay: .3s;
+    }
+
+    .bar:nth-child(7) {
+      background: linear-gradient(180deg, rgba(var(--green-rgb), 1), rgba(var(--green-rgb), .3));
+      height: 100%;
+      animation-delay: .35s;
+    }
+
+    .chip-row {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .chip {
+      font-size: .69rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 100px;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      cursor: default;
+      transition: all .2s;
+    }
+
+    .chip.on {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
+
+    /* Floating badge */
+    .float-badge {
+      position: absolute;
+      bottom: -18px;
+      left: -20px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px 18px;
+      box-shadow: var(--shadow);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      animation: floatBadge 5s ease-in-out infinite;
+      transition: background .3s;
+    }
+
+    @keyframes floatBadge {
+
+      0%,
+      100% {
+        transform: translateY(0)
+      }
+
+      50% {
+        transform: translateY(-8px)
+      }
+    }
+
+    .fb-icon {
+      font-size: 1.4rem;
+    }
+
+    .fb-text {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .fb-val {
+      font-family: 'Clash Display', sans-serif;
+      font-weight: 700;
+      font-size: .95rem;
+      color: var(--green);
+    }
+
+    .fb-lbl {
+      font-size: .72rem;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    /* ─── TRUST STRIP ─── */
+    .trust-strip {
+      background: var(--ink);
+      color: var(--bg);
+      padding: 20px 5%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+      border-top: 1px solid var(--border2);
+      transition: background .3s;
+    }
+
+    [data-theme="dark"] .trust-strip {
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+    }
+
+    .trust-label {
+      font-size: .75rem;
+      color: rgba(244, 241, 234, .45);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    [data-theme="dark"] .trust-label {
+      color: var(--muted);
+    }
+
+    .trust-items {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Clash Display', sans-serif;
+      font-weight: 600;
+      font-size: .9rem;
+      opacity: .65;
+    }
+
+    [data-theme="dark"] .trust-item {
+      color: var(--ink2);
+      opacity: 1;
+    }
+
+    .trust-item svg {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+    }
+
+    /* ─── SECTION SCAFFOLD ─── */
+    .section {
+      padding: 110px 5%;
+    }
+
+    .section-dark {
+      background: var(--bg2);
+    }
+
+    .section-invert {
+      background: var(--ink);
+    }
+
+    [data-theme="dark"] .section-invert {
+      background: var(--bg2);
+    }
+
+    .s-eyebrow {
+      font-size: .73rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .s-eyebrow::before {
+      content: '';
+      width: 20px;
+      height: 2px;
+      background: var(--accent);
+      border-radius: 2px;
+    }
+
+    .s-title {
+      font-family: 'Clash Display', sans-serif;
+      font-size: clamp(2rem, 3.8vw, 3.2rem);
+      font-weight: 700;
+      line-height: 1.08;
+      letter-spacing: -1.5px;
+      margin-bottom: 16px;
+    }
+
+    .s-sub {
+      font-size: 1.02rem;
+      color: var(--muted);
+      line-height: 1.72;
+      max-width: 520px;
+      font-weight: 400;
+    }
+
+    .section-invert .s-title,
+    .section-invert .s-eyebrow {
+      color: var(--bg);
+    }
+
+    .section-invert .s-eyebrow {
+      color: var(--gold);
+    }
+
+    .section-invert .s-sub {
+      color: rgba(244, 241, 234, .5);
+    }
+
+    [data-theme="dark"] .section-invert .s-title {
+      color: var(--ink);
+    }
+
+    [data-theme="dark"] .section-invert .s-eyebrow {
+      color: var(--gold);
+    }
+
+    [data-theme="dark"] .section-invert .s-sub {
+      color: var(--ink2);
+    }
+
+    /* ─── SERVICES ─── */
+    .services-header {
+      margin-bottom: 56px;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 16px;
+    }
+
+    .svc-card {
+      background: rgba(255, 255, 255, .04);
+      border: 1px solid rgba(255, 255, 255, .08);
+      padding: 36px 30px;
+      border-radius: 18px;
+      transition: all .3s;
+      position: relative;
+      overflow: hidden;
+      cursor: default;
+    }
+
+    .svc-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform .35s;
+    }
+
+    .svc-card:hover {
+      background: rgba(255, 255, 255, .07);
+      transform: translateY(-5px);
+    }
+
+    .svc-card:hover::after {
+      transform: scaleX(1);
+    }
+
+    .svc-card:nth-child(2)::after {
+      background: var(--orange);
+    }
+
+    .svc-card:nth-child(3)::after {
+      background: var(--green);
+    }
+
+    .svc-card:nth-child(4)::after {
+      background: var(--gold);
+    }
+
+    .svc-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 13px;
+      background: rgba(var(--accent-rgb), .15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 22px;
+    }
+
+    .svc-icon svg {
+      width: 22px;
+      height: 22px;
+      stroke: var(--accent);
+      fill: none;
+      stroke-width: 1.8;
+    }
+
+    .svc-card:nth-child(2) .svc-icon {
+      background: rgba(var(--orange-rgb), .15);
+    }
+
+    .svc-card:nth-child(2) .svc-icon svg {
+      stroke: var(--orange);
+    }
+
+    .svc-card:nth-child(3) .svc-icon {
+      background: rgba(var(--green-rgb), .15);
+    }
+
+    .svc-card:nth-child(3) .svc-icon svg {
+      stroke: var(--green);
+    }
+
+    .svc-card:nth-child(4) .svc-icon {
+      background: rgba(var(--gold-rgb), .15);
+    }
+
+    .svc-card:nth-child(4) .svc-icon svg {
+      stroke: var(--gold);
+    }
+
+    .svc-card h3 {
+      font-family: 'Clash Display', sans-serif;
+      font-size: 1.08rem;
+      font-weight: 600;
+      color: rgba(244, 241, 234, .92);
+      margin-bottom: 12px;
+    }
+
+    [data-theme="dark"] .svc-card h3 {
+      color: var(--ink);
+    }
+
+    .svc-card p {
+      font-size: .88rem;
+      color: rgba(244, 241, 234, .45);
+      line-height: 1.65;
+      font-weight: 400;
+    }
+
+    [data-theme="dark"] .svc-card p {
+      color: var(--muted);
+    }
+
+    .svc-tags {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-top: 22px;
+    }
+
+    .stag {
+      font-size: .68rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 100px;
+      border: 1px solid rgba(255, 255, 255, .1);
+      color: rgba(255, 255, 255, .4);
+      letter-spacing: .3px;
+    }
+
+    [data-theme="dark"] .stag {
+      border: 1px solid var(--border);
+      color: var(--muted);
+    }
+
+    /* ─── TECH STACK ─── */
+    .tech-section {
+      text-align: center;
+    }
+
+    .tech-section .s-title,
+    .tech-section .s-eyebrow {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .tech-section .s-sub {
+      margin: 0 auto 48px;
+    }
+
+    .tech-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .tech-pill {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 11px 20px;
+      border-radius: 100px;
+      font-weight: 600;
+      font-size: .88rem;
+      color: var(--ink);
+      transition: all .2s;
+      cursor: default;
+    }
+
+    .tech-pill:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(var(--accent-rgb), .12);
+    }
+
+    .tech-pill svg {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+    }
+
+    /* ─── INSIGHTS ─── */
+    .insights-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 28px;
+      align-items: start;
+    }
+
+    .insight-panel {
+      background: var(--bg2);
+      border-radius: 24px;
+      padding: 48px 44px;
+      border: 1px solid var(--border);
+      transition: background .3s, border-color .3s;
+    }
+
+    .insight-panel .s-eyebrow {
+      color: var(--accent);
+    }
+
+    .insight-panel .s-title {
+      font-size: clamp(1.7rem, 2.8vw, 2.4rem);
+    }
+
+    .insight-panel .s-sub {
+      margin-bottom: 36px;
+    }
+
+    .insight-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .iitem {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border2);
+    }
+
+    .iitem:last-child {
+      border: none;
+      padding-bottom: 0;
+    }
+
+    .iitem-num {
+      font-family: 'Clash Display', sans-serif;
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: var(--accent);
+      flex-shrink: 0;
+      line-height: 1;
+      min-width: 32px;
+    }
+
+    .iitem strong {
+      display: block;
+      font-size: .9rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .iitem span {
+      font-size: .83rem;
+      color: var(--muted);
+      line-height: 1.55;
+      font-weight: 400;
+    }
+
+    .insight-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .icard {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 22px;
+      transition: all .25s;
+    }
+
+    .icard:hover {
+      border-color: var(--accent);
+      transform: translateX(5px);
+    }
+
+    .icard-head {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      margin-bottom: 9px;
+    }
+
+    .icard-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: rgba(var(--accent-rgb), .08);
+      border: 1px solid rgba(var(--accent-rgb), .15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .icard-icon svg {
+      width: 17px;
+      height: 17px;
+      stroke: var(--accent);
+      fill: none;
+      stroke-width: 2;
+    }
+
+    .icard:nth-child(2) .icard-icon {
+      background: rgba(var(--orange-rgb), .08);
+      border-color: rgba(var(--orange-rgb), .15);
+    }
+
+    .icard:nth-child(2) .icard-icon svg {
+      stroke: var(--orange);
+    }
+
+    .icard:nth-child(3) .icard-icon {
+      background: rgba(var(--green-rgb), .08);
+      border-color: rgba(var(--green-rgb), .15);
+    }
+
+    .icard:nth-child(3) .icard-icon svg {
+      stroke: var(--green);
+    }
+
+    .icard:nth-child(4) .icard-icon {
+      background: rgba(var(--gold-rgb), .1);
+      border-color: rgba(var(--gold-rgb), .2);
+    }
+
+    .icard:nth-child(4) .icard-icon svg {
+      stroke: var(--gold);
+    }
+
+    .icard-title {
+      font-family: 'Clash Display', sans-serif;
+      font-weight: 600;
+      font-size: .95rem;
+    }
+
+    .icard-body {
+      font-size: .82rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .icard-metric {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      margin-top: 10px;
+      font-size: .73rem;
+      font-weight: 700;
+      color: var(--green);
+      background: rgba(var(--green-rgb), .08);
+      border: 1px solid rgba(var(--green-rgb), .2);
+      padding: 4px 10px;
+      border-radius: 100px;
+    }
+
+    .icard-metric svg {
+      width: 11px;
+      height: 11px;
+    }
+
+    /* ─── REPORTING ─── */
+    .report-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .rcard {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 28px;
+      position: relative;
+      overflow: hidden;
+      transition: all .25s;
+    }
+
+    .rcard:hover {
+      box-shadow: var(--shadow);
+      transform: translateY(-3px);
+    }
+
+    .rcard-badge {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      font-size: .68rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 100px;
+      text-transform: uppercase;
+      letter-spacing: .6px;
+    }
+
+    .badge-d {
+      background: rgba(var(--accent-rgb), .1);
+      color: var(--accent);
+    }
+
+    .badge-m {
+      background: rgba(var(--green-rgb), .1);
+      color: var(--green);
+    }
+
+    .badge-q {
+      background: rgba(var(--gold-rgb), .12);
+      color: #8a7200;
+    }
+
+    [data-theme="dark"] .badge-q {
+      color: var(--gold);
+    }
+
+    .badge-y {
+      background: rgba(var(--orange-rgb), .1);
+      color: var(--orange);
+    }
+
+    .rcard-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 11px;
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(var(--accent-rgb), .08);
+      border: 1px solid rgba(var(--accent-rgb), .12);
+    }
+
+    .rcard:nth-child(2) .rcard-icon {
+      background: rgba(var(--green-rgb), .08);
+      border-color: rgba(var(--green-rgb), .12);
+    }
+
+    .rcard:nth-child(3) .rcard-icon {
+      background: rgba(var(--gold-rgb), .1);
+      border-color: rgba(var(--gold-rgb), .15);
+    }
+
+    .rcard:nth-child(4) .rcard-icon {
+      background: rgba(var(--orange-rgb), .08);
+      border-color: rgba(var(--orange-rgb), .12);
+    }
+
+    .rcard-icon svg {
+      width: 20px;
+      height: 20px;
+      fill: none;
+      stroke-width: 1.8;
+      stroke: var(--accent);
+    }
+
+    .rcard:nth-child(2) .rcard-icon svg {
+      stroke: var(--green);
+    }
+
+    .rcard:nth-child(3) .rcard-icon svg {
+      stroke: var(--gold);
+    }
+
+    .rcard:nth-child(4) .rcard-icon svg {
+      stroke: var(--orange);
+    }
+
+    .rcard h4 {
+      font-family: 'Clash Display', sans-serif;
+      font-weight: 600;
+      font-size: 1rem;
+      margin-bottom: 8px;
+    }
+
+    .rcard>p {
+      font-size: .85rem;
+      color: var(--muted);
+      line-height: 1.62;
+      margin-bottom: 20px;
+    }
+
+    .rfeats {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .rfeats li {
+      font-size: .82rem;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 9px;
+    }
+
+    .rfeats li svg {
+      width: 15px;
+      height: 15px;
+      stroke: var(--green);
+      fill: none;
+      stroke-width: 2.5;
+      flex-shrink: 0;
+    }
+
+    .prog-row {
+      margin-top: 16px;
+    }
+
+    .prog-row-top {
+      display: flex;
+      justify-content: space-between;
+      font-size: .73rem;
+      color: var(--muted);
+      margin-bottom: 7px;
+      font-weight: 600;
+    }
+
+    .prog-bar {
+      height: 5px;
+      background: var(--bg2);
+      border-radius: 100px;
+      overflow: hidden;
+    }
+
+    .prog-fill {
+      height: 100%;
+      border-radius: 100px;
+    }
+
+    /* ─── INDUSTRIES ─── */
+    .ind-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .ind-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 34px 28px;
+      transition: all .3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .ind-card::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      border-radius: 0 0 22px 22px;
+    }
+
+    .ind-card.bank::before {
+      background: var(--accent);
+    }
+
+    .ind-card.grocery::before {
+      background: var(--green);
+    }
+
+    .ind-card.clinic::before {
+      background: var(--orange);
+    }
+
+    .ind-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow);
+    }
+
+    .ind-icon-wrap {
+      width: 56px;
+      height: 56px;
+      border-radius: 15px;
+      margin-bottom: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+    }
+
+    .ind-card.bank .ind-icon-wrap {
+      background: rgba(var(--accent-rgb), .1);
+    }
+
+    .ind-card.grocery .ind-icon-wrap {
+      background: rgba(var(--green-rgb), .1);
+    }
+
+    .ind-card.clinic .ind-icon-wrap {
+      background: rgba(var(--orange-rgb), .1);
+    }
+
+    .ind-card h3 {
+      font-family: 'Clash Display', sans-serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+    }
+
+    .ind-card>p {
+      font-size: .87rem;
+      color: var(--muted);
+      line-height: 1.65;
+      margin-bottom: 22px;
+    }
+
+    .use-cases {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .uc {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      background: var(--bg2);
+      border: 1px solid var(--border2);
+      transition: background .3s;
+    }
+
+    .uc-icon {
+      width: 30px;
+      height: 30px;
+      border-radius: 8px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .ind-card.bank .uc-icon {
+      background: rgba(var(--accent-rgb), .1);
+    }
+
+    .ind-card.grocery .uc-icon {
+      background: rgba(var(--green-rgb), .1);
+    }
+
+    .ind-card.clinic .uc-icon {
+      background: rgba(var(--orange-rgb), .1);
+    }
+
+    .uc-icon svg {
+      width: 14px;
+      height: 14px;
+      fill: none;
+      stroke-width: 2;
+    }
+
+    .ind-card.bank .uc-icon svg {
+      stroke: var(--accent);
+    }
+
+    .ind-card.grocery .uc-icon svg {
+      stroke: var(--green);
+    }
+
+    .ind-card.clinic .uc-icon svg {
+      stroke: var(--orange);
+    }
+
+    .uc-text strong {
+      display: block;
+      font-size: .82rem;
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+
+    .uc-text span {
+      font-size: .78rem;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    /* ─── SECURITY ─── */
+    .security-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+
+    .sec-visual {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 44px;
+      text-align: center;
+      transition: background .3s;
+    }
+
+    .shield-wrap {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 28px;
+    }
+
+    .shield-main {
+      font-size: 5rem;
+      line-height: 1;
+      filter: drop-shadow(0 8px 24px rgba(var(--green-rgb), .3));
+    }
+
+    .shield-check {
+      position: absolute;
+      top: -4px;
+      right: -6px;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--green);
+      border: 3px solid var(--surface);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .shield-check svg {
+      width: 13px;
+      height: 13px;
+      stroke: #fff;
+      fill: none;
+      stroke-width: 3;
+    }
+
+    .sec-uptime {
+      font-family: 'Clash Display', sans-serif;
+      font-weight: 700;
+      font-size: 3.4rem;
+    }
+
+    .sec-uptime-lbl {
+      font-size: .82rem;
+      color: var(--muted);
+      margin-bottom: 28px;
+      font-weight: 500;
+    }
+
+    .sec-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      text-align: left;
+    }
+
+    .sec-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 11px 14px;
+      background: var(--bg2);
+      border-radius: 11px;
+      border: 1px solid var(--border2);
+      font-size: .84rem;
+      font-weight: 500;
+      transition: background .3s;
+    }
+
+    .sec-row svg {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+      stroke: var(--green);
+      fill: none;
+      stroke-width: 2;
+    }
+
+    .sec-content .s-sub {
+      margin-bottom: 28px;
+    }
+
+    .checkfeats {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 32px;
+    }
+
+    .checkfeats li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: .87rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .checkfeats li svg {
+      width: 16px;
+      height: 16px;
+      stroke: var(--green);
+      fill: none;
+      stroke-width: 2.5;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .comp-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .cbadge {
+      padding: 7px 15px;
+      border-radius: 8px;
+      font-size: .76rem;
+      font-weight: 700;
+      letter-spacing: .5px;
+    }
+
+    .cbadge.blue {
+      background: rgba(var(--accent-rgb), .08);
+      color: var(--accent);
+      border: 1px solid rgba(var(--accent-rgb), .2);
+    }
+
+    .cbadge.green {
+      background: rgba(var(--green-rgb), .08);
+      color: var(--green);
+      border: 1px solid rgba(var(--green-rgb), .2);
+    }
+
+    .cbadge.gold {
+      background: rgba(var(--gold-rgb), .1);
+      color: #8a7200;
+      border: 1px solid rgba(var(--gold-rgb), .25);
+    }
+
+    [data-theme="dark"] .cbadge.gold {
+      color: var(--gold);
+    }
+
+    /* ─── PROCESS ─── */
+    .process-track {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      position: relative;
+      margin-top: 64px;
+    }
+
+    .process-line {
+      position: absolute;
+      top: 28px;
+      left: 10%;
+      right: 10%;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .process-line-fill {
+      height: 100%;
+      background: var(--accent);
+      border-radius: 2px;
+      animation: lineFill 2s ease-out 0.5s forwards;
+      transform-origin: left;
+      transform: scaleX(0);
+    }
+
+    @keyframes lineFill {
+      to {
+        transform: scaleX(1)
+      }
+    }
+
+    .pstep {
+      padding: 0 12px 0;
+      text-align: center;
+    }
+
+    .pstep-num {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--surface);
+      border: 2px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Clash Display', sans-serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--accent);
+      margin: 0 auto 22px;
+      position: relative;
+      z-index: 2;
+      transition: all .25s;
+    }
+
+    .pstep-num svg {
+      width: 22px;
+      height: 22px;
+      stroke: var(--accent);
+      fill: none;
+      stroke-width: 2;
+    }
+
+    .pstep:hover .pstep-num {
+      background: var(--accent);
+      border-color: var(--accent);
+      transform: scale(1.1);
+    }
+
+    .pstep:hover .pstep-num svg {
+      stroke: #fff;
+    }
+
+    .pstep h4 {
+      font-family: 'Clash Display', sans-serif;
+      font-size: .92rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .pstep p {
+      font-size: .8rem;
+      color: var(--muted);
+      line-height: 1.6;
+      font-weight: 400;
+    }
+
+    /* ─── STATS ─── */
+    .stats-section {
+      background: var(--accent);
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+    }
+
+    .stat-cell {
+      padding: 64px 40px;
+      text-align: center;
+      border-right: 1px solid rgba(255, 255, 255, .15);
+    }
+
+    .stat-cell:last-child {
+      border: none;
+    }
+
+    .stat-num {
+      font-family: 'Clash Display', sans-serif;
+      font-weight: 700;
+      font-size: 3.4rem;
+      color: #fff;
+      margin-bottom: 8px;
+      line-height: 1;
+    }
+
+    .stat-lbl {
+      font-size: .85rem;
+      color: rgba(255, 255, 255, .65);
+      font-weight: 500;
+    }
+
+    /* ─── FOUNDER ─── */
+    .founder-section {
+      background: var(--bg);
+    }
+
+    .founder-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .founder-visual {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .founder-avatar {
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(var(--accent-rgb), .2), rgba(var(--green-rgb), .15));
+      border: 2px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Clash Display', sans-serif;
+      font-weight: 700;
+      font-size: 5rem;
+      color: var(--accent);
+      position: relative;
+      box-shadow: 0 0 0 12px rgba(var(--accent-rgb), .05), 0 0 0 24px rgba(var(--accent-rgb), .03);
+    }
+
+    .founder-name-plate {
+      position: absolute;
+      bottom: -16px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 12px 22px;
+      text-align: center;
+      white-space: nowrap;
+      box-shadow: var(--shadow);
+    }
+
+    .fnp-name {
+      font-family: 'Clash Display', sans-serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+
+    .fnp-role {
+      font-size: .75rem;
+      color: var(--accent);
+      font-weight: 600;
+      letter-spacing: .5px;
+      margin-top: 2px;
+    }
+
+    .founder-badges {
+      position: absolute;
+      top: 20px;
+      right: -20px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .fbadge {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 8px 12px;
+      font-size: .73rem;
+      font-weight: 700;
+      color: var(--ink);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+      box-shadow: var(--shadow);
+    }
+
+    .fbadge svg {
+      width: 14px;
+      height: 14px;
+      flex-shrink: 0;
+    }
+
+    .founder-content .s-sub {
+      margin-bottom: 28px;
+    }
+
+    .founder-quote {
+      background: var(--bg2);
+      border-left: 3px solid var(--accent);
+      padding: 20px 24px;
+      border-radius: 0 14px 14px 0;
+      margin-bottom: 32px;
+    }
+
+    .founder-quote p {
+      font-size: .95rem;
+      font-style: italic;
+      color: var(--ink2);
+      line-height: 1.7;
+      font-weight: 400;
+    }
+
+    .founder-quote cite {
+      font-size: .8rem;
+      color: var(--muted);
+      font-style: normal;
+      font-weight: 700;
+    }
+
+    .founder-links {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .flink {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border-radius: 10px;
+      font-size: .85rem;
+      font-weight: 600;
+      border: 1.5px solid var(--border);
+      color: var(--ink);
+      transition: all .2s;
+    }
+
+    .flink svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .flink:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .flink.primary {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
+
+    .flink.primary:hover {
+      opacity: .85;
+    }
+
+    /* ─── CONTACT / CTA ─── */
+    .cta-section {
+      background: var(--ink);
+      padding: 120px 5%;
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+      transition: background .3s;
+    }
+
+    [data-theme="dark"] .cta-section {
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+    }
+
+    .cta-glow {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 700px;
+      height: 700px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(var(--accent-rgb), .18) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .cta-section .s-title {
+      color: #eef0f8;
+      font-size: clamp(2.2rem, 4vw, 3.4rem);
+    }
+
+    [data-theme="dark"] .cta-section .s-title {
+      color: var(--ink);
+    }
+
+    .cta-section .s-eyebrow {
+      color: var(--gold);
+      justify-content: center;
+    }
+
+    .cta-section .s-eyebrow::before {
+      background: var(--gold);
+    }
+
+    .cta-section .s-sub {
+      color: rgba(238, 240, 248, .45);
+      margin: 0 auto 48px;
+      text-align: center;
+    }
+
+    [data-theme="dark"] .cta-section .s-sub {
+      color: var(--muted);
+    }
+
+    .form-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 44px 48px;
+      max-width: 620px;
+      margin: 0 auto;
+      text-align: left;
+      position: relative;
+      z-index: 2;
+      box-shadow: var(--shadow-lg);
+      transition: background .3s;
+    }
+
+    .form-card h3 {
+      font-family: 'Clash Display', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .frow {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .fgroup label {
+      display: block;
+      font-size: .82rem;
+      font-weight: 700;
+      color: var(--muted);
+      margin-bottom: 7px;
+      letter-spacing: .3px;
+    }
+
+    .finput,
+    .fselect {
+      width: 100%;
+      padding: 13px 15px;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      font-family: 'Cabinet Grotesk', sans-serif;
+      font-size: .93rem;
+      outline: none;
+      background: var(--bg2);
+      color: var(--ink);
+      transition: border-color .2s, background .2s;
+    }
+
+    .finput:focus,
+    .fselect:focus {
+      border-color: var(--accent);
+      background: var(--surface);
+      box-shadow: 0 0 0 3px rgba(var(--accent-rgb), .1);
+    }
+
+    .fselect {
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236b7180' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 36px;
+    }
+
+    .phone-group {
+      display: flex;
+      gap: 8px;
+    }
+
+    .phone-pfx {
+      background: var(--bg3);
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      padding: 13px 14px;
+      font-size: .93rem;
+      font-weight: 700;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .btn-submit {
+      width: 100%;
+      margin-top: 6px;
+      padding: 15px;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      font-family: 'Clash Display', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all .2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .btn-submit svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .btn-submit:hover {
+      opacity: .85;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(var(--accent-rgb), .3);
+    }
+
+    .form-privacy {
+      text-align: center;
+      font-size: .77rem;
+      color: var(--muted);
+      margin-top: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .form-privacy svg {
+      width: 13px;
+      height: 13px;
+      stroke: var(--green);
+      fill: none;
+      stroke-width: 2;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--ink);
+      color: rgba(244, 241, 234, .4);
+      padding: 72px 5% 36px;
+      border-top: 1px solid rgba(244, 241, 234, .06);
+      transition: background .3s;
+    }
+
+    [data-theme="dark"] footer {
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 56px;
+    }
+
+    .footer-brand .logo {
+      color: rgba(244, 241, 234, .85);
+      margin-bottom: 14px;
+    }
+
+    [data-theme="dark"] .footer-brand .logo {
+      color: var(--ink);
+    }
+
+    .footer-brand>p {
+      font-size: .84rem;
+      line-height: 1.72;
+      max-width: 260px;
+      font-weight: 400;
+    }
+
+    [data-theme="dark"] .footer-brand>p {
+      color: var(--muted);
+    }
+
+    .footer-col h5 {
+      font-family: 'Clash Display', sans-serif;
+      font-size: .88rem;
+      font-weight: 700;
+      color: rgba(244, 241, 234, .85);
+      margin-bottom: 16px;
+      letter-spacing: .5px;
+    }
+
+    [data-theme="dark"] .footer-col h5 {
+      color: var(--ink);
+    }
+
+    .footer-col a {
+      display: block;
+      font-size: .84rem;
+      margin-bottom: 10px;
+      transition: color .2s;
+    }
+
+    [data-theme="dark"] .footer-col a {
+      color: var(--muted);
+    }
+
+    .footer-col a:hover {
+      color: rgba(244, 241, 234, .9);
+    }
+
+    [data-theme="dark"] .footer-col a:hover {
+      color: var(--ink);
+    }
+
+    .footer-bottom {
+      padding-top: 28px;
+      border-top: 1px solid rgba(244, 241, 234, .08);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    [data-theme="dark"] .footer-bottom {
+      border-top: 1px solid var(--border2);
+    }
+
+    .footer-bottom span {
+      font-size: .79rem;
+    }
+
+    [data-theme="dark"] .footer-bottom span {
+      color: var(--muted);
+    }
+
+    .footer-made-by {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: .79rem;
+    }
+
+    [data-theme="dark"] .footer-made-by {
+      color: var(--muted);
+    }
+
+    .footer-made-by svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    /* ─── REVEAL ─── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .65s ease, transform .65s ease;
+    }
+
+    .reveal.in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media(max-width:1100px) {
+      .ind-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .founder-grid {
+        gap: 48px;
+      }
+    }
+
+    @media(max-width:900px) {
+      .hero {
+        grid-template-columns: 1fr;
+        padding-top: 96px;
+      }
+
+      .hero-visual {
+        display: none;
+      }
+
+      .insights-grid,
+      .security-grid,
+      .founder-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .report-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .stats-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .stat-cell {
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 255, 255, .15);
+      }
+
+      .stat-cell:nth-child(odd) {
+        border-right: 1px solid rgba(255, 255, 255, .15);
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .process-track {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      .process-line {
+        display: none;
+      }
+    }
+
+    @media(max-width:640px) {
+
+      .ind-grid,
+      .stats-grid,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .stat-cell {
+        border-right: none;
+      }
+
+      .frow {
+        grid-template-columns: 1fr;
+      }
+
+      .form-card {
+        padding: 28px 24px;
+      }
+
+      .founder-badges {
+        display: none;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-<!-- ═══ NAV ═══ -->
-<nav>
-  <a href="#" class="logo">
-    <div class="logo-icon">
-      <svg viewBox="0 0 24 24"><path d="M3 3h7v7H3zM14 3h7v7h-7zM14 14h7v7h-7zM3 14h7v7H3z"/></svg>
-    </div>
-    <span class="logo-text">Data<span>BroIQ</span></span>
-  </a>
-  <ul class="nav-links">
-    <li><a href="#services">Services</a></li>
-    <li><a href="#insights">Insights</a></li>
-    <li><a href="#industries">Industries</a></li>
-    <li><a href="#security">Security</a></li>
-    <li><a href="#founder">About</a></li>
-  </ul>
-  <div class="nav-right">
-    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
-      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-    </button>
-    <a href="#contact" class="nav-cta">
-      Book Demo
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+  <!-- ═══ NAV ═══ -->
+  <nav>
+    <a href="#" class="logo">
+      <div class="logo-icon">
+        <svg viewBox="0 0 24 24">
+          <path d="M3 3h7v7H3zM14 3h7v7h-7zM14 14h7v7h-7zM3 14h7v7H3z" />
+        </svg>
+      </div>
+      <span class="logo-text">Data<span>BroIQ</span></span>
     </a>
-  </div>
-</nav>
-
-<!-- ═══ HERO ═══ -->
-<section class="hero">
-  <div class="hero-bg-grid"></div>
-  <div class="hero-glow"></div>
-
-  <div class="hero-content">
-    <div class="hero-eyebrow"><div class="eyebrow-dot"></div> Intelligent Business Analytics</div>
-    <h1 class="display">Turn Raw Data<br>Into <span class="accent-word">Business</span><br><mark class="highlight-word">Growth</mark></h1>
-    <p class="hero-desc">Empower your strategy with real-time Power BI intelligence, enterprise Snowflake data warehousing, and AI-driven insights — built for India's fastest-growing businesses.</p>
-    <div class="hero-btns">
-      <a href="#contact" class="btn-primary">
-        Book a Free Demo
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#insights">Insights</a></li>
+      <li><a href="#industries">Industries</a></li>
+      <li><a href="#security">Security</a></li>
+      <li><a href="#founder">About</a></li>
+    </ul>
+    <div class="nav-right">
+      <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
+        </svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="5" />
+          <line x1="12" y1="1" x2="12" y2="3" />
+          <line x1="12" y1="21" x2="12" y2="23" />
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+          <line x1="1" y1="12" x2="3" y2="12" />
+          <line x1="21" y1="12" x2="23" y2="12" />
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+        </svg>
+      </button>
+      <a href="#contact" class="nav-cta">
+        Book Demo
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M5 12h14M12 5l7 7-7 7" />
+        </svg>
       </a>
-      <a href="#services" class="btn-outline">Explore Services</a>
     </div>
-    <div class="hero-stats">
-      <div class="hstat">
-        <span class="hstat-val display">120<span class="green">+</span></span>
-        <span class="hstat-label">Businesses Served</span>
-      </div>
-      <div class="hstat-divider"></div>
-      <div class="hstat">
-        <span class="hstat-val display">₹3Cr<span class="green">+</span></span>
-        <span class="hstat-label">Revenue Attributed</span>
-      </div>
-      <div class="hstat-divider"></div>
-      <div class="hstat">
-        <span class="hstat-val display">99.9<span class="green">%</span></span>
-        <span class="hstat-label">Uptime SLA</span>
-      </div>
-    </div>
-  </div>
+  </nav>
 
-  <div class="hero-visual">
-    <div class="dash-card">
-      <div class="dash-topbar">
-        <div class="dash-title-row">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-          <span class="dash-title display">Business Dashboard</span>
-        </div>
-        <span class="dash-period">Q2 · 2025</span>
-      </div>
-      <div class="kpi-row">
-        <div class="kpi">
-          <div class="kpi-lbl">Revenue</div>
-          <div class="kpi-val display">₹4.2M</div>
-          <div class="kpi-chg up">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="18 15 12 9 6 15"/></svg>
-            18.4%
-          </div>
-        </div>
-        <div class="kpi">
-          <div class="kpi-lbl">Customers</div>
-          <div class="kpi-val display">1,284</div>
-          <div class="kpi-chg up">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="18 15 12 9 6 15"/></svg>
-            9.1%
-          </div>
-        </div>
-        <div class="kpi">
-          <div class="kpi-lbl">Churn Rate</div>
-          <div class="kpi-val display">2.3%</div>
-          <div class="kpi-chg dn">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="6 9 12 15 18 9"/></svg>
-            0.8%
-          </div>
-        </div>
-      </div>
-      <div class="bars">
-        <div class="bar"></div><div class="bar"></div><div class="bar"></div>
-        <div class="bar"></div><div class="bar"></div><div class="bar"></div>
-        <div class="bar"></div>
-      </div>
-      <div class="chip-row">
-        <span class="chip on">Banking</span>
-        <span class="chip">Grocery</span>
-        <span class="chip">Clinic</span>
-        <span class="chip">+ More</span>
-      </div>
-    </div>
-    <div class="float-badge">
-      <div class="fb-icon">📈</div>
-      <div class="fb-text">
-        <span class="fb-val">+31% Growth</span>
-        <span class="fb-lbl">vs last quarter</span>
-      </div>
-    </div>
-  </div>
-</section>
+  <!-- ═══ HERO ═══ -->
+  <section class="hero">
+    <div class="hero-bg-grid"></div>
+    <div class="hero-glow"></div>
 
-<!-- ═══ TRUST ═══ -->
-<div class="trust-strip">
-  <span class="trust-label">Trusted by</span>
-  <div class="trust-items">
-    <div class="trust-item">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
-      Startup Banks &amp; NBFCs
-    </div>
-    <div class="trust-item">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0"/></svg>
-      Mid-Level Grocery Chains
-    </div>
-    <div class="trust-item">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-      Healthcare &amp; Clinics
-    </div>
-    <div class="trust-item">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 001.99 1.61h9.72a2 2 0 001.99-1.61L23 6H6"/></svg>
-      E-Commerce Startups
-    </div>
-    <div class="trust-item">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
-      Retail Businesses
-    </div>
-  </div>
-</div>
-
-<!-- ═══ SERVICES ═══ -->
-<section class="section section-invert" id="services">
-  <div class="services-header">
-    <div class="s-eyebrow">What We Do</div>
-    <div class="s-title display">End-to-End Data<br>Intelligence Platform</div>
-    <p class="s-sub">We go beyond reporting. DataBroIQ solves complex data challenges with AI-driven intelligence and actionable growth strategies.</p>
-  </div>
-  <div class="services-grid">
-    <div class="svc-card reveal">
-      <div class="svc-icon">
-        <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+    <div class="hero-content">
+      <div class="hero-eyebrow">
+        <div class="eyebrow-dot"></div> Intelligent Business Analytics
       </div>
-      <h3>Adaptive Decision Support</h3>
-      <p>AI-driven recommendations that adapt to your business context in real time — resolving operational bottlenecks before they escalate.</p>
-      <div class="svc-tags"><span class="stag">AI-Guided</span><span class="stag">Root Cause</span><span class="stag">Real-Time</span></div>
-    </div>
-    <div class="svc-card reveal">
-      <div class="svc-icon">
-        <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
-      </div>
-      <h3>Auto-Insight Pinning</h3>
-      <p>Automatically surface and pin critical business signals to your personal workspace — never miss an emerging trend or risk again.</p>
-      <div class="svc-tags"><span class="stag">Smart Alerts</span><span class="stag">Pinboard</span><span class="stag">Trend Tracking</span></div>
-    </div>
-    <div class="svc-card reveal">
-      <div class="svc-icon">
-        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-      </div>
-      <h3>Integrated Power BI Dashboards</h3>
-      <p>Unified real-time dashboards aggregating KPIs across every department — tailored to your role and refreshed automatically.</p>
-      <div class="svc-tags"><span class="stag">Power BI</span><span class="stag">Unified View</span><span class="stag">Multi-Dept</span></div>
-    </div>
-    <div class="svc-card reveal">
-      <div class="svc-icon">
-        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
-      </div>
-      <h3>Growth Strategy Intelligence</h3>
-      <p>We interpret your data and build strategic roadmaps — combining historical science with ML forecasting to fuel sustainable growth.</p>
-      <div class="svc-tags"><span class="stag">Forecasting</span><span class="stag">Strategy</span><span class="stag">KPI Review</span></div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ TECH STACK ═══ -->
-<section class="section tech-section">
-  <div class="s-eyebrow" style="justify-content:center">Technology Stack</div>
-  <div class="s-title display" style="text-align:center">Enterprise-Grade<br>Tools, Expert-Configured</div>
-  <p class="s-sub">Best-in-class data infrastructure, combined and configured by our specialist engineering team.</p>
-  <div class="tech-grid">
-    <div class="tech-pill">
-      <svg viewBox="0 0 24 24" fill="none" stroke="#29B5E8" stroke-width="1.8"><ellipse cx="12" cy="12" rx="10" ry="5"/><path d="M2 12c0 2.76 4.48 5 10 5s10-2.24 10-5"/><path d="M2 7c0 2.76 4.48 5 10 5s10-2.24 10-5"/></svg>
-      Snowflake
-    </div>
-    <div class="tech-pill">
-      <svg viewBox="0 0 24 24" fill="none" stroke="#F2C94C" stroke-width="1.8"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-      Power BI
-    </div>
-    <div class="tech-pill">
-      <svg viewBox="0 0 24 24" fill="none" stroke="#3776AB" stroke-width="1.8"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M8 12h8M12 8v8"/></svg>
-      Python / ML
-    </div>
-    <div class="tech-pill">
-      <svg viewBox="0 0 24 24" fill="none" stroke="#E25A1C" stroke-width="1.8"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-      Apache Spark
-    </div>
-    <div class="tech-pill">
-      <svg viewBox="0 0 24 24" fill="none" stroke="#FF694A" stroke-width="1.8"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>
-      dbt Core
-    </div>
-    <div class="tech-pill">
-      <svg viewBox="0 0 24 24" fill="none" stroke="#00C896" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14"/></svg>
-      XGBoost / sklearn
-    </div>
-    <div class="tech-pill">
-      <svg viewBox="0 0 24 24" fill="none" stroke="#0078D4" stroke-width="1.8"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
-      Azure / AWS
-    </div>
-    <div class="tech-pill">
-      <svg viewBox="0 0 24 24" fill="none" stroke="#017CEE" stroke-width="1.8"><path d="M22 12A10 10 0 1112 2"/><polyline points="22 2 16 8 22 14"/></svg>
-      Apache Airflow
-    </div>
-    <div class="tech-pill">
-      <svg viewBox="0 0 24 24" fill="none" stroke="#4D80FF" stroke-width="1.8"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
-      OAuth 2.0 / RBAC
-    </div>
-  </div>
-</section>
-
-<!-- ═══ INSIGHTS ═══ -->
-<section class="section section-dark" id="insights">
-  <div class="insights-grid">
-    <div class="insight-panel reveal">
-      <div class="s-eyebrow">Data Science</div>
-      <div class="s-title display">Science-Backed<br>Growth Insights</div>
-      <p class="s-sub">Our scientists don't just report what happened — they uncover why and prescribe what to do next. Every insight is tied to a business action.</p>
-      <ul class="insight-list">
-        <li class="iitem">
-          <div class="iitem-num">01</div>
-          <div>
-            <strong>Predictive Analytics</strong>
-            <span>Forecast revenue, demand, and customer behaviour weeks ahead using ML models trained on your own data.</span>
-          </div>
-        </li>
-        <li class="iitem">
-          <div class="iitem-num">02</div>
-          <div>
-            <strong>Customer Segmentation</strong>
-            <span>RFM + behavioural clustering to identify your highest-value customers and those at risk of leaving.</span>
-          </div>
-        </li>
-        <li class="iitem">
-          <div class="iitem-num">03</div>
-          <div>
-            <strong>Anomaly Detection</strong>
-            <span>Real-time alerts when fraud, data anomalies, or unusual activity surfaces — before it escalates.</span>
-          </div>
-        </li>
-        <li class="iitem">
-          <div class="iitem-num">04</div>
-          <div>
-            <strong>Growth Attribution</strong>
-            <span>Know exactly which product, campaign, or channel is driving growth — and invest where it truly matters.</span>
-          </div>
-        </li>
-      </ul>
-    </div>
-    <div class="insight-cards">
-      <div class="icard reveal">
-        <div class="icard-head">
-          <div class="icard-icon"><svg viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div>
-          <span class="icard-title display">Revenue Forecast</span>
-        </div>
-        <p class="icard-body">95-day forward revenue projection with confidence intervals — auto-updated weekly from actuals.</p>
-        <span class="icard-metric"><svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg> 22% better accuracy vs manual</span>
-      </div>
-      <div class="icard reveal">
-        <div class="icard-head">
-          <div class="icard-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01"/></svg></div>
-          <span class="icard-title display">Churn Prevention</span>
-        </div>
-        <p class="icard-body">Identify churners 30 days ahead — trigger automated retention playbooks before they leave.</p>
-        <span class="icard-metric"><svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg> Avg 31% churn reduction · Year 1</span>
-      </div>
-      <div class="icard reveal">
-        <div class="icard-head">
-          <div class="icard-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
-          <span class="icard-title display">Root Cause Analysis</span>
-        </div>
-        <p class="icard-body">AI drills into KPI drops to isolate the exact source — product, region, or team — in minutes.</p>
-        <span class="icard-metric"><svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg> Insight to action &lt; 48 hrs</span>
-      </div>
-      <div class="icard reveal">
-        <div class="icard-head">
-          <div class="icard-icon"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
-          <span class="icard-title display">Opportunity Finder</span>
-        </div>
-        <p class="icard-body">Cross-sell, upsell, and expansion signals auto-surfaced from transaction and behaviour data.</p>
-        <span class="icard-metric"><svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg> Avg ₹3.2L new revenue found/month</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ REPORTING ═══ -->
-<section class="section" id="reporting">
-  <div class="s-eyebrow">Report Cadence</div>
-  <div class="s-title display">Right Insights,<br>Right Frequency</div>
-  <p class="s-sub" style="margin-bottom:52px">Every business runs on different rhythms. We deliver reports at every time horizon — daily ops to annual strategy.</p>
-  <div class="report-grid">
-    <div class="rcard reveal">
-      <span class="rcard-badge badge-d">Daily</span>
-      <div class="rcard-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
-      <h4 class="display">Day-Wise Operations</h4>
-      <p>Live snapshot of sales, transactions, and customer activity — in your inbox every morning.</p>
-      <ul class="rfeats">
-        <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Sales volume vs daily target</li>
-        <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Transaction count &amp; value</li>
-        <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Inventory alerts &amp; restocking</li>
-        <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Customer footfall tracking</li>
-      </ul>
-    </div>
-    <div class="rcard reveal">
-      <span class="rcard-badge badge-m">Monthly</span>
-      <div class="rcard-icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
-      <h4 class="display">Monthly Performance Review</h4>
-      <p>Revenue, growth metrics, customer acquisition cost, and OKR performance — all in one report.</p>
-      <ul class="rfeats">
-        <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Revenue &amp; margin analysis</li>
-        <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Customer acquisition &amp; churn</li>
-        <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Month-over-month trend lines</li>
-      </ul>
-      <div class="prog-row">
-        <div class="prog-row-top"><span>Monthly Goal Progress</span><span>74%</span></div>
-        <div class="prog-bar"><div class="prog-fill" style="width:74%;background:var(--green)"></div></div>
-      </div>
-    </div>
-    <div class="rcard reveal">
-      <span class="rcard-badge badge-q">Quarterly</span>
-      <div class="rcard-icon"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
-      <h4 class="display">Quarterly Business Review</h4>
-      <p>Deep-dive for leadership — segment performance, competitive shifts, and forward projections.</p>
-      <ul class="rfeats">
-        <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Segment-wise profitability</li>
-        <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> QoQ benchmarks</li>
-        <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Predictive revenue forecast</li>
-        <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Risk &amp; opportunity matrix</li>
-      </ul>
-    </div>
-    <div class="rcard reveal">
-      <span class="rcard-badge badge-y">Yearly</span>
-      <div class="rcard-icon"><svg viewBox="0 0 24 24"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg></div>
-      <h4 class="display">Annual Strategic Intelligence</h4>
-      <p>Board-level intelligence: data science narratives, growth attribution, and next-year roadmaps.</p>
-      <ul class="rfeats">
-        <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Year-on-year P&amp;L analytics</li>
-        <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Market share &amp; positioning</li>
-        <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> ML-driven next-year forecast</li>
-      </ul>
-      <div class="prog-row">
-        <div class="prog-row-top"><span>Annual Target Achieved</span><span>62%</span></div>
-        <div class="prog-bar"><div class="prog-fill" style="width:62%;background:var(--orange)"></div></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ INDUSTRIES ═══ -->
-<section class="section section-dark" id="industries">
-  <div class="s-eyebrow">Industries We Serve</div>
-  <div class="s-title display">Built for Your<br>Business Type</div>
-  <p class="s-sub" style="margin-bottom:52px">DataBroIQ understands the unique data challenges of India's emerging businesses.</p>
-  <div class="ind-grid">
-    <div class="ind-card bank reveal">
-      <div class="ind-icon-wrap">🏦</div>
-      <h3>New Banks &amp; NBFCs</h3>
-      <p>Real-time compliance dashboards, loan portfolio health, and customer lifecycle analytics to stay ahead of risk and regulators.</p>
-      <div class="use-cases">
-        <div class="uc">
-          <div class="uc-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
-          <div class="uc-text"><strong>RBI Compliance Reports</strong><span>Automated regulatory dashboards aligned to RBI/SEBI guidelines.</span></div>
-        </div>
-        <div class="uc">
-          <div class="uc-icon"><svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/></svg></div>
-          <div class="uc-text"><strong>Loan Default Risk Prediction</strong><span>ML models score borrower risk and flag early warning signals.</span></div>
-        </div>
-        <div class="uc">
-          <div class="uc-icon"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
-          <div class="uc-text"><strong>Customer 360 View</strong><span>Unified profile with transaction, product, and support history.</span></div>
-        </div>
-      </div>
-    </div>
-    <div class="ind-card grocery reveal">
-      <div class="ind-icon-wrap">🛒</div>
-      <h3>Mid-Level Grocery Shops</h3>
-      <p>Daily stock intelligence, demand forecasting, and margin optimization to compete with larger chains.</p>
-      <div class="use-cases">
-        <div class="uc">
-          <div class="uc-icon"><svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg></div>
-          <div class="uc-text"><strong>Inventory Intelligence</strong><span>Auto-alerts on fast-moving SKUs, wastage tracking, and reorder cues.</span></div>
-        </div>
-        <div class="uc">
-          <div class="uc-icon"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
-          <div class="uc-text"><strong>Demand Forecasting</strong><span>Predict weekly demand by category using seasonal and trend models.</span></div>
-        </div>
-        <div class="uc">
-          <div class="uc-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div>
-          <div class="uc-text"><strong>Margin Optimisation</strong><span>SKU-level profitability analysis to cut low-margin products.</span></div>
-        </div>
-      </div>
-    </div>
-    <div class="ind-card clinic reveal">
-      <div class="ind-icon-wrap">🏥</div>
-      <h3>Clinics &amp; Healthcare</h3>
-      <p>Patient flow analytics, revenue cycle intelligence, and appointment optimisation to improve care and profitability.</p>
-      <div class="use-cases">
-        <div class="uc">
-          <div class="uc-icon"><svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
-          <div class="uc-text"><strong>Patient Flow Analytics</strong><span>Appointment vs walk-in trends, wait time analysis, peak hour heatmaps.</span></div>
-        </div>
-        <div class="uc">
-          <div class="uc-icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></div>
-          <div class="uc-text"><strong>Revenue Cycle Management</strong><span>Billing efficiency, insurance claim tracking, payment analytics.</span></div>
-        </div>
-        <div class="uc">
-          <div class="uc-icon"><svg viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/></svg></div>
-          <div class="uc-text"><strong>Retention &amp; Follow-ups</strong><span>Identify at-risk patients and automate recall campaigns.</span></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ SECURITY ═══ -->
-<section class="section" id="security">
-  <div class="security-grid">
-    <div class="sec-visual reveal">
-      <div class="shield-wrap">
-        <div class="shield-main">🛡️</div>
-        <div class="shield-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
-      </div>
-      <div class="sec-uptime display">99.9%</div>
-      <div class="sec-uptime-lbl">Data Availability Uptime SLA</div>
-      <div class="sec-list">
-        <div class="sec-row"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg> AES-256 Encryption at Rest</div>
-        <div class="sec-row"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> TLS 1.3 In-Transit Security</div>
-        <div class="sec-row"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg> Role-Based Access Control</div>
-        <div class="sec-row"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Multi-Factor Authentication</div>
-        <div class="sec-row"><svg viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/></svg> Automated Daily Backups</div>
-      </div>
-    </div>
-    <div class="sec-content reveal">
-      <div class="s-eyebrow">Data Security</div>
-      <div class="s-title display">Your Data is<br>a Fort Knox</div>
-      <p class="s-sub">Snowflake enterprise-grade warehousing with multiple layers of security, compliance, and governance — built in from day one, not bolted on.</p>
-      <ul class="checkfeats">
-        <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Customer data isolated in dedicated Snowflake schemas with row-level security</li>
-        <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Power BI reports secured via Azure AD single sign-on</li>
-        <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> End-to-end data lineage — every number is traceable to its source</li>
-        <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> GDPR-ready handling with right-to-erasure support</li>
-        <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Monthly security audits and penetration testing</li>
-      </ul>
-      <div class="comp-row">
-        <span class="cbadge blue">ISO 27001</span>
-        <span class="cbadge green">SOC 2 Type II</span>
-        <span class="cbadge gold">GDPR Ready</span>
-        <span class="cbadge blue">RBI Guidelines</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ PROCESS ═══ -->
-<section class="section section-dark" id="process">
-  <div style="text-align:center;margin-bottom:16px">
-    <div class="s-eyebrow" style="justify-content:center">Our Workflow</div>
-    <div class="s-title display">From Raw Data<br>to Clear Insights</div>
-    <p class="s-sub" style="margin:0 auto">A seamless end-to-end journey — transforming your business data into actionable growth strategies.</p>
-  </div>
-  <div class="process-track">
-    <div class="process-line"><div class="process-line-fill"></div></div>
-    <div class="pstep reveal">
-      <div class="pstep-num"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div>
-      <h4>Requirements &amp; Data Gathering</h4>
-      <p>You share business goals and raw historical data through our secure onboarding form.</p>
-    </div>
-    <div class="pstep reveal">
-      <div class="pstep-num"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
-      <h4>Data Ops &amp; Processing</h4>
-      <p>Our Data Ops team cleans, organises, and structures raw files to make them analysis-ready.</p>
-    </div>
-    <div class="pstep reveal">
-      <div class="pstep-num"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14"/></svg></div>
-      <h4>Data Science &amp; Analytics</h4>
-      <p>Scientists apply models to uncover deep trends and predict growth outcomes with precision.</p>
-    </div>
-    <div class="pstep reveal">
-      <div class="pstep-num"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
-      <h4>Dashboard Development</h4>
-      <p>Insights are built into visually rich Power BI dashboards tailored to your exact requests.</p>
-    </div>
-    <div class="pstep reveal">
-      <div class="pstep-num"><svg viewBox="0 0 24 24"><polyline points="22 8 13.5 16.5 8.5 11.5 1 18"/><polyline points="16 8 22 8 22 14"/></svg></div>
-      <h4>Delivery &amp; Reporting</h4>
-      <p>Secure dashboard links give you constant access to daily, monthly, quarterly, and yearly reports.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ STATS ═══ -->
-<section class="section stats-section" style="padding:0">
-  <div class="stats-grid">
-    <div class="stat-cell reveal">
-      <div class="stat-num display">120+</div>
-      <div class="stat-lbl">Businesses Empowered</div>
-    </div>
-    <div class="stat-cell reveal">
-      <div class="stat-num display">₹48Cr+</div>
-      <div class="stat-lbl">Revenue Growth Attributed</div>
-    </div>
-    <div class="stat-cell reveal">
-      <div class="stat-num display">4.5B+</div>
-      <div class="stat-lbl">Data Rows Processed</div>
-    </div>
-    <div class="stat-cell reveal">
-      <div class="stat-num display">99.9%</div>
-      <div class="stat-lbl">Dashboard Uptime</div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ FOUNDER ═══ -->
-<section class="section founder-section" id="founder">
-  <div class="founder-grid">
-    <div class="founder-visual">
-      <div class="founder-avatar">
-        AY
-        <div class="founder-name-plate">
-          <div class="fnp-name">Akash Yadav</div>
-          <div class="fnp-role">Founder &amp; CEO · DataBroIQ</div>
-        </div>
-      </div>
-      <div class="founder-badges">
-        <div class="fbadge" style="color:var(--accent)">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-          Data Science Expert
-        </div>
-        <div class="fbadge" style="color:var(--green)">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          Snowflake Certified
-        </div>
-        <div class="fbadge" style="color:var(--orange)">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-          Power BI Pro
-        </div>
-      </div>
-    </div>
-    <div class="founder-content">
-      <div class="s-eyebrow">Meet the Founder</div>
-      <div class="s-title display">Built by a Data<br>Practitioner, for<br>Growing Businesses</div>
-      <div class="founder-quote">
-        <p>"I started DataBroIQ because I watched too many great businesses make gut decisions on incomplete data. Every business — whether a new bank, a local grocery, or a clinic — deserves the same quality of intelligence that Fortune 500 companies have. That's exactly what we're building."</p>
-        <cite>— Akash Yadav, Founder &amp; CEO</cite>
-      </div>
-      <p class="s-sub" style="margin-bottom:28px">Akash brings deep expertise in data engineering, predictive modelling, and business intelligence — having worked with enterprises across BFSI, retail, and healthcare sectors before founding DataBroIQ in Pune.</p>
-      <div class="founder-links">
-        <a href="mailto:akash@databroiq.in" class="flink primary">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-          Email Akash
+      <h1 class="display">Turn Raw Data<br>Into <span class="accent-word">Business</span><br><mark
+          class="highlight-word">Growth</mark></h1>
+      <p class="hero-desc">Empower your strategy with real-time Power BI intelligence, enterprise Snowflake data
+        warehousing, and AI-driven insights built for India's fastest-growing businesses.</p>
+      <div class="hero-btns">
+        <a href="#contact" class="btn-primary">
+          Book a Free Demo
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M5 12h14M12 5l7 7-7 7" />
+          </svg>
         </a>
-        <a href="https://linkedin.com" class="flink">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
-          LinkedIn
-        </a>
-        <a href="tel:+919000000000" class="flink">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.18 6.18l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-          Call Us
-        </a>
+        <a href="#services" class="btn-outline">Explore Services</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hstat">
+          <span class="hstat-val display">120<span class="green">+</span></span>
+          <span class="hstat-label">Businesses Served</span>
+        </div>
+        <div class="hstat-divider"></div>
+        <div class="hstat">
+          <span class="hstat-val display">₹50L<span class="green">+</span></span>
+          <span class="hstat-label">Revenue Attributed</span>
+        </div>
+        <div class="hstat-divider"></div>
+        <div class="hstat">
+          <span class="hstat-val display">99.9<span class="green">%</span></span>
+          <span class="hstat-label">Uptime SLA</span>
+        </div>
       </div>
     </div>
-  </div>
-</section>
 
-<!-- ═══ CONTACT / CTA ═══ -->
-<section class="cta-section" id="contact">
-  <div class="cta-glow"></div>
-  <div style="position:relative;z-index:2">
-    <div class="s-eyebrow" style="justify-content:center">Let's Connect</div>
-    <div class="s-title display" style="font-size:clamp(2rem,3.8vw,3.2rem);color:#eef0f8;margin-bottom:16px">Your Data Should<br>Work for You</div>
-    <p class="s-sub">Join 120+ businesses using DataBroIQ. Fill in your details and we'll show you what your data is truly capable of.</p>
-    <div class="form-card reveal">
-      <h3>Book a Free Demo</h3>
-      <form onsubmit="handleSubmit(event)">
-        <div class="frow">
-          <div class="fgroup">
-            <label>Full Name</label>
-            <input type="text" class="finput" placeholder="e.g. Rahul Sharma" required>
+    <div class="hero-visual">
+      <div class="dash-card">
+        <div class="dash-topbar">
+          <div class="dash-title-row">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+            </svg>
+            <span class="dash-title display">Business Dashboard</span>
           </div>
-          <div class="fgroup">
-            <label>Business Type</label>
-            <select class="fselect" required>
-              <option value="" disabled selected>Select industry…</option>
-              <option>Banking / NBFC</option>
-              <option>Grocery / Retail</option>
-              <option>Healthcare / Clinic</option>
-              <option>E-Commerce Startup</option>
-              <option>Other Small Business</option>
-            </select>
-          </div>
+          <span class="dash-period">Q2 · 2025</span>
         </div>
-        <div class="frow">
-          <div class="fgroup">
-            <label>Work Email</label>
-            <input type="email" class="finput" placeholder="rahul@company.in" required>
+        <div class="kpi-row">
+          <div class="kpi">
+            <div class="kpi-lbl">Revenue</div>
+            <div class="kpi-val display">₹4.2M</div>
+            <div class="kpi-chg up">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                <polyline points="18 15 12 9 6 15" />
+              </svg>
+              18.4%
+            </div>
           </div>
-          <div class="fgroup">
-            <label>Phone Number (India)</label>
-            <div class="phone-group">
-              <span class="phone-pfx">+91</span>
-              <input type="tel" class="finput" pattern="[0-9]{10}" placeholder="90000 00000" required>
+          <div class="kpi">
+            <div class="kpi-lbl">Customers</div>
+            <div class="kpi-val display">1,284</div>
+            <div class="kpi-chg up">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                <polyline points="18 15 12 9 6 15" />
+              </svg>
+              9.1%
+            </div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-lbl">Churn Rate</div>
+            <div class="kpi-val display">2.3%</div>
+            <div class="kpi-chg dn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                <polyline points="6 9 12 15 18 9" />
+              </svg>
+              0.8%
             </div>
           </div>
         </div>
-        <button type="submit" class="btn-submit">
-          Book Demo with Akash
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </button>
-      </form>
-      <p class="form-privacy">
-        <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
-        Your data is encrypted and never shared with third parties
-      </p>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ FOOTER ═══ -->
-<footer>
-  <div class="footer-grid">
-    <div class="footer-brand">
-      <div class="logo" style="margin-bottom:14px">
-        <div class="logo-icon" style="width:28px;height:28px;border-radius:7px">
-          <svg viewBox="0 0 24 24" style="width:14px;height:14px;fill:none;stroke:white;stroke-width:2"><path d="M3 3h7v7H3zM14 3h7v7h-7zM14 14h7v7h-7zM3 14h7v7H3z"/></svg>
+        <div class="bars">
+          <div class="bar"></div>
+          <div class="bar"></div>
+          <div class="bar"></div>
+          <div class="bar"></div>
+          <div class="bar"></div>
+          <div class="bar"></div>
+          <div class="bar"></div>
         </div>
-        <span style="color:rgba(244,241,234,.85)">Data<span style="color:var(--accent)">BroIQ</span></span>
+        <div class="chip-row">
+          <span class="chip on">Banking</span>
+          <span class="chip">Grocery</span>
+          <span class="chip">Clinic</span>
+          <span class="chip">+ More</span>
+        </div>
       </div>
-      <p>Intelligent business analytics for India's growing businesses. From data to decisions — powered by Snowflake and Power BI.</p>
-      <p style="margin-top:12px;font-size:.78rem">Founded by <strong style="color:rgba(244,241,234,.7)">Akash Yadav</strong> · Pune, Maharashtra</p>
+      <div class="float-badge">
+        <div class="fb-icon">📈</div>
+        <div class="fb-text">
+          <span class="fb-val">+31% Growth</span>
+          <span class="fb-lbl">vs last quarter</span>
+        </div>
+      </div>
     </div>
-    <div class="footer-col">
-      <h5>Services</h5>
-      <a href="#">Power BI Dashboards</a>
-      <a href="#">Snowflake Warehouse</a>
-      <a href="#">Data Science &amp; ML</a>
-      <a href="#">Growth Reports</a>
-    </div>
-    <div class="footer-col">
-      <h5>Industries</h5>
-      <a href="#">Banking &amp; NBFC</a>
-      <a href="#">Grocery Retail</a>
-      <a href="#">Healthcare Clinics</a>
-      <a href="#">E-Commerce</a>
-    </div>
-    <div class="footer-col">
-      <h5>Company</h5>
-      <a href="#founder">About Akash Yadav</a>
-      <a href="#">Case Studies</a>
-      <a href="#">Pricing</a>
-      <a href="#contact">Contact</a>
+  </section>
+
+  <!-- ═══ TRUST ═══ -->
+  <div class="trust-strip">
+    <span class="trust-label">Trusted by</span>
+    <div class="trust-items">
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="3" width="7" height="7" rx="1" />
+          <rect x="14" y="3" width="7" height="7" rx="1" />
+          <rect x="3" y="14" width="7" height="7" rx="1" />
+          <rect x="14" y="14" width="7" height="7" rx="1" />
+        </svg>
+        Startup Banks &amp; NBFCs
+      </div>
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M6 2 3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0" />
+        </svg>
+        Mid-Level Grocery Chains
+      </div>
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+        </svg>
+        Healthcare &amp; Clinics
+      </div>
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="9" cy="21" r="1" />
+          <circle cx="20" cy="21" r="1" />
+          <path d="M1 1h4l2.68 13.39a2 2 0 001.99 1.61h9.72a2 2 0 001.99-1.61L23 6H6" />
+        </svg>
+        E-Commerce Startups
+      </div>
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="12" y1="1" x2="12" y2="23" />
+          <path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" />
+        </svg>
+        Retail Businesses
+      </div>
     </div>
   </div>
-  <div class="footer-bottom">
-    <span>© 2025 DataBroIQ. All rights reserved.</span>
-    <div class="footer-made-by">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-      Pune, Maharashtra, India &nbsp;·&nbsp; hello@databroiq.in
+
+  <!-- ═══ SERVICES ═══ -->
+  <section class="section section-invert" id="services">
+    <div class="services-header">
+      <div class="s-eyebrow">What We Do</div>
+      <div class="s-title display">End-to-End Data<br>Intelligence Platform</div>
+      <p class="s-sub">We go beyond reporting. DataBroIQ solves complex data challenges with AI-driven intelligence and
+        actionable growth strategies.</p>
     </div>
-  </div>
-</footer>
+    <div class="services-grid">
+      <div class="svc-card reveal">
+        <div class="svc-icon">
+          <svg viewBox="0 0 24 24">
+            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+          </svg>
+        </div>
+        <h3>Adaptive Decision Support</h3>
+        <p>AI-driven recommendations that adapt to your business context in real time, resolving operational
+          bottlenecks before they escalate.</p>
+        <div class="svc-tags"><span class="stag">AI-Guided</span><span class="stag">Root Cause</span><span
+            class="stag">Real-Time</span></div>
+      </div>
+      <div class="svc-card reveal">
+        <div class="svc-icon">
+          <svg viewBox="0 0 24 24">
+            <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
+          </svg>
+        </div>
+        <h3>Auto-Insight Pinning</h3>
+        <p>Automatically surface and pin critical business signals to your personal workspace. Never miss an emerging
+          trend or risk again.</p>
+        <div class="svc-tags"><span class="stag">Smart Alerts</span><span class="stag">Pinboard</span><span
+            class="stag">Trend Tracking</span></div>
+      </div>
+      <div class="svc-card reveal">
+        <div class="svc-icon">
+          <svg viewBox="0 0 24 24">
+            <rect x="3" y="3" width="18" height="18" rx="2" />
+            <path d="M3 9h18M9 21V9" />
+          </svg>
+        </div>
+        <h3>Integrated Power BI Dashboards</h3>
+        <p>Unified real-time dashboards aggregating KPIs across every department, tailored to your role and refreshed
+          automatically.</p>
+        <div class="svc-tags"><span class="stag">Power BI</span><span class="stag">Unified View</span><span
+            class="stag">Multi-Dept</span></div>
+      </div>
+      <div class="svc-card reveal">
+        <div class="svc-icon">
+          <svg viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10" />
+            <path d="M12 8v4l3 3" />
+          </svg>
+        </div>
+        <h3>Growth Strategy Intelligence</h3>
+        <p>We interpret your data and build strategic roadmaps, combining historical science with ML forecasting to
+          fuel sustainable growth.</p>
+        <div class="svc-tags"><span class="stag">Forecasting</span><span class="stag">Strategy</span><span
+            class="stag">KPI Review</span></div>
+      </div>
+    </div>
+  </section>
 
-<script>
-// ── Theme toggle ──
-function toggleTheme() {
-  const html = document.documentElement;
-  html.setAttribute('data-theme', html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
-  localStorage.setItem('dbroiq-theme', html.getAttribute('data-theme'));
-}
-// Load saved preference
-(function(){
-  const saved = localStorage.getItem('dbroiq-theme') || 
-    (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-  document.documentElement.setAttribute('data-theme', saved);
-})();
+  <!-- ═══ TECH STACK ═══ -->
+  <section class="section tech-section">
+    <div class="s-eyebrow" style="justify-content:center">Technology Stack</div>
+    <div class="s-title display" style="text-align:center">Enterprise-Grade<br>Tools, Expert-Configured</div>
+    <p class="s-sub">Best-in-class data infrastructure, combined and configured by our specialist engineering team.</p>
+    <div class="tech-grid">
+      <div class="tech-pill">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#29B5E8" stroke-width="1.8">
+          <ellipse cx="12" cy="12" rx="10" ry="5" />
+          <path d="M2 12c0 2.76 4.48 5 10 5s10-2.24 10-5" />
+          <path d="M2 7c0 2.76 4.48 5 10 5s10-2.24 10-5" />
+        </svg>
+        Snowflake
+      </div>
+      <div class="tech-pill">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#F2C94C" stroke-width="1.8">
+          <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+        </svg>
+        Power BI
+      </div>
+      <div class="tech-pill">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#3776AB" stroke-width="1.8">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z" />
+          <path d="M8 12h8M12 8v8" />
+        </svg>
+        Python / ML
+      </div>
+      <div class="tech-pill">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#E25A1C" stroke-width="1.8">
+          <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+        </svg>
+        Apache Spark
+      </div>
+      <div class="tech-pill">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#FF694A" stroke-width="1.8">
+          <path
+            d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z" />
+        </svg>
+        dbt Core
+      </div>
+      <div class="tech-pill">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#00C896" stroke-width="1.8">
+          <circle cx="12" cy="12" r="3" />
+          <path d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14" />
+        </svg>
+        XGBoost / sklearn
+      </div>
+      <div class="tech-pill">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#0078D4" stroke-width="1.8">
+          <rect x="2" y="7" width="20" height="14" rx="2" />
+          <path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16" />
+        </svg>
+        Azure / AWS
+      </div>
+      <div class="tech-pill">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#017CEE" stroke-width="1.8">
+          <path d="M22 12A10 10 0 1112 2" />
+          <polyline points="22 2 16 8 22 14" />
+        </svg>
+        Apache Airflow
+      </div>
+      <div class="tech-pill">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#4D80FF" stroke-width="1.8">
+          <rect x="3" y="11" width="18" height="11" rx="2" />
+          <path d="M7 11V7a5 5 0 0110 0v4" />
+        </svg>
+        OAuth 2.0 / RBAC
+      </div>
+    </div>
+  </section>
 
-// ── Scroll reveals ──
-const revealObs = new IntersectionObserver((entries) => {
-  entries.forEach((e, i) => {
-    if (e.isIntersecting) {
-      setTimeout(() => e.target.classList.add('in'), i * 70);
+  <!-- ═══ INSIGHTS ═══ -->
+  <section class="section section-dark" id="insights">
+    <div class="insights-grid">
+      <div class="insight-panel reveal">
+        <div class="s-eyebrow">Data Science</div>
+        <div class="s-title display">Science-Backed<br>Growth Insights</div>
+        <p class="s-sub">Our scientists don't just report what happened. They uncover why and prescribe what to do
+          next. Every insight is tied to a business action.</p>
+        <ul class="insight-list">
+          <li class="iitem">
+            <div class="iitem-num">01</div>
+            <div>
+              <strong>Predictive Analytics</strong>
+              <span>Forecast revenue, demand, and customer behaviour weeks ahead using ML models trained on your own
+                data.</span>
+            </div>
+          </li>
+          <li class="iitem">
+            <div class="iitem-num">02</div>
+            <div>
+              <strong>Customer Segmentation</strong>
+              <span>RFM + behavioural clustering to identify your highest-value customers and those at risk of
+                leaving.</span>
+            </div>
+          </li>
+          <li class="iitem">
+            <div class="iitem-num">03</div>
+            <div>
+              <strong>Anomaly Detection</strong>
+              <span>Real-time alerts when fraud, data anomalies, or unusual activity surfaces, before it
+                escalates.</span>
+            </div>
+          </li>
+          <li class="iitem">
+            <div class="iitem-num">04</div>
+            <div>
+              <strong>Growth Attribution</strong>
+              <span>Know exactly which product, campaign, or channel is driving growth and invest where it truly
+                matters.</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="insight-cards">
+        <div class="icard reveal">
+          <div class="icard-head">
+            <div class="icard-icon"><svg viewBox="0 0 24 24">
+                <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" />
+                <polyline points="17 6 23 6 23 12" />
+              </svg></div>
+            <span class="icard-title display">Revenue Forecast</span>
+          </div>
+          <p class="icard-body">95-day forward revenue projection with confidence intervals, auto-updated weekly from
+            actuals.</p>
+          <span class="icard-metric"><svg viewBox="0 0 24 24">
+              <polyline points="18 15 12 9 6 15" />
+            </svg> 22% better accuracy vs manual</span>
+        </div>
+        <div class="icard reveal">
+          <div class="icard-head">
+            <div class="icard-icon"><svg viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10" />
+                <path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01" />
+              </svg></div>
+            <span class="icard-title display">Churn Prevention</span>
+          </div>
+          <p class="icard-body">Identify churners 30 days ahead. Trigger automated retention playbooks before they
+            leave.</p>
+          <span class="icard-metric"><svg viewBox="0 0 24 24">
+              <polyline points="18 15 12 9 6 15" />
+            </svg> Avg 31% churn reduction · Year 1</span>
+        </div>
+        <div class="icard reveal">
+          <div class="icard-head">
+            <div class="icard-icon"><svg viewBox="0 0 24 24">
+                <circle cx="11" cy="11" r="8" />
+                <line x1="21" y1="21" x2="16.65" y2="16.65" />
+              </svg></div>
+            <span class="icard-title display">Root Cause Analysis</span>
+          </div>
+          <p class="icard-body">AI drills into KPI drops to isolate the exact source: product, region, or team, in
+            minutes.</p>
+          <span class="icard-metric"><svg viewBox="0 0 24 24">
+              <polyline points="18 15 12 9 6 15" />
+            </svg> Insight to action &lt; 48 hrs</span>
+        </div>
+        <div class="icard reveal">
+          <div class="icard-head">
+            <div class="icard-icon"><svg viewBox="0 0 24 24">
+                <polygon
+                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+              </svg></div>
+            <span class="icard-title display">Opportunity Finder</span>
+          </div>
+          <p class="icard-body">Cross-sell, upsell, and expansion signals auto-surfaced from transaction and behaviour
+            data.</p>
+          <span class="icard-metric"><svg viewBox="0 0 24 24">
+              <polyline points="18 15 12 9 6 15" />
+            </svg> Avg ₹3.2L new revenue found/month</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ REPORTING ═══ -->
+  <section class="section" id="reporting">
+    <div class="s-eyebrow">Report Cadence</div>
+    <div class="s-title display">Right Insights,<br>Right Frequency</div>
+    <p class="s-sub" style="margin-bottom:52px">Every business runs on different rhythms. We deliver reports at every
+      time horizon: daily ops to annual strategy.</p>
+    <div class="report-grid">
+      <div class="rcard reveal">
+        <span class="rcard-badge badge-d">Daily</span>
+        <div class="rcard-icon"><svg viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10" />
+            <polyline points="12 6 12 12 16 14" />
+          </svg></div>
+        <h4 class="display">Day-Wise Operations</h4>
+        <p>Live snapshot of sales, transactions, and customer activity delivered in your inbox every morning.</p>
+        <ul class="rfeats">
+          <li><svg viewBox="0 0 24 24">
+              <polyline points="20 6 9 17 4 12" />
+            </svg> Sales volume vs daily target</li>
+          <li><svg viewBox="0 0 24 24">
+              <polyline points="20 6 9 17 4 12" />
+            </svg> Transaction count &amp; value</li>
+          <li><svg viewBox="0 0 24 24">
+              <polyline points="20 6 9 17 4 12" />
+            </svg> Inventory alerts &amp; restocking</li>
+          <li><svg viewBox="0 0 24 24">
+              <polyline points="20 6 9 17 4 12" />
+            </svg> Customer footfall tracking</li>
+        </ul>
+      </div>
+      <div class="rcard reveal">
+        <span class="rcard-badge badge-m">Monthly</span>
+        <div class="rcard-icon"><svg viewBox="0 0 24 24">
+            <rect x="3" y="4" width="18" height="18" rx="2" />
+            <line x1="16" y1="2" x2="16" y2="6" />
+            <line x1="8" y1="2" x2="8" y2="6" />
+            <line x1="3" y1="10" x2="21" y2="10" />
+          </svg></div>
+        <h4 class="display">Monthly Performance Review</h4>
+        <p>Revenue, growth metrics, customer acquisition cost, and OKR performance consolidated in one report.</p>
+        <ul class="rfeats">
+          <li><svg viewBox="0 0 24 24">
+              <polyline points="20 6 9 17 4 12" />
+            </svg> Revenue &amp; margin analysis</li>
+          <li><svg viewBox="0 0 24 24">
+              <polyline points="20 6 9 17 4 12" />
+            </svg> Customer acquisition &amp; churn</li>
+          <li><svg viewBox="0 0 24 24">
+              <polyline points="20 6 9 17 4 12" />
+            </svg> Month-over-month trend lines</li>
+        </ul>
+        <div class="prog-row">
+          <div class="prog-row-top"><span>Monthly Goal Progress</span><span>74%</span></div>
+          <div class="prog-bar">
+            <div class="prog-fill" style="width:74%;background:var(--green)"></div>
+          </div>
+        </div>
+      </div>
+      <div class="rcard reveal">
+        <span class="rcard-badge badge-q">Quarterly</span>
+        <div class="rcard-icon"><svg viewBox="0 0 24 24">
+            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+          </svg></div>
+        <h4 class="display">Quarterly Business Review</h4>
+        <p>Deep-dive for leadership on segment performance, competitive shifts, and forward projections.</p>
+        <ul class="rfeats">
+          <li><svg viewBox="0 0 24 24">
+              <polyline points="20 6 9 17 4 12" />
+            </svg> Segment-wise profitability</li>
+          <li><svg viewBox="0 0 24 24">
+              <polyline points="20 6 9 17 4 12" />
+            </svg> QoQ benchmarks</li>
+          <li><svg viewBox="0 0 24 24">
+              <polyline points="20 6 9 17 4 12" />
+            </svg> Predictive revenue forecast</li>
+          <li><svg viewBox="0 0 24 24">
+              <polyline points="20 6 9 17 4 12" />
+            </svg> Risk &amp; opportunity matrix</li>
+        </ul>
+      </div>
+      <div class="rcard reveal">
+        <span class="rcard-badge badge-y">Yearly</span>
+        <div class="rcard-icon"><svg viewBox="0 0 24 24">
+            <path d="M18 20V10" />
+            <path d="M12 20V4" />
+            <path d="M6 20v-6" />
+          </svg></div>
+        <h4 class="display">Annual Strategic Intelligence</h4>
+        <p>Board-level intelligence: data science narratives, growth attribution, and next-year roadmaps.</p>
+        <ul class="rfeats">
+          <li><svg viewBox="0 0 24 24">
+              <polyline points="20 6 9 17 4 12" />
+            </svg> Year-on-year P&amp;L analytics</li>
+          <li><svg viewBox="0 0 24 24">
+              <polyline points="20 6 9 17 4 12" />
+            </svg> Market share &amp; positioning</li>
+          <li><svg viewBox="0 0 24 24">
+              <polyline points="20 6 9 17 4 12" />
+            </svg> ML-driven next-year forecast</li>
+        </ul>
+        <div class="prog-row">
+          <div class="prog-row-top"><span>Annual Target Achieved</span><span>62%</span></div>
+          <div class="prog-bar">
+            <div class="prog-fill" style="width:62%;background:var(--orange)"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ INDUSTRIES ═══ -->
+  <section class="section section-dark" id="industries">
+    <div class="s-eyebrow">Industries We Serve</div>
+    <div class="s-title display">Built for Your<br>Business Type</div>
+    <p class="s-sub" style="margin-bottom:52px">DataBroIQ understands the unique data challenges of India's emerging
+      businesses.</p>
+    <div class="ind-grid">
+      <div class="ind-card bank reveal">
+        <div class="ind-icon-wrap">🏦</div>
+        <h3>New Banks &amp; NBFCs</h3>
+        <p>Real-time compliance dashboards, loan portfolio health, and customer lifecycle analytics to stay ahead of
+          risk and regulators.</p>
+        <div class="use-cases">
+          <div class="uc">
+            <div class="uc-icon"><svg viewBox="0 0 24 24">
+                <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
+                <polyline points="14 2 14 8 20 8" />
+              </svg></div>
+            <div class="uc-text"><strong>RBI Compliance Reports</strong><span>Automated regulatory dashboards aligned to
+                RBI/SEBI guidelines.</span></div>
+          </div>
+          <div class="uc">
+            <div class="uc-icon"><svg viewBox="0 0 24 24">
+                <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" />
+              </svg></div>
+            <div class="uc-text"><strong>Loan Default Risk Prediction</strong><span>ML models score borrower risk and
+                flag early warning signals.</span></div>
+          </div>
+          <div class="uc">
+            <div class="uc-icon"><svg viewBox="0 0 24 24">
+                <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
+                <circle cx="12" cy="7" r="4" />
+              </svg></div>
+            <div class="uc-text"><strong>Customer 360 View</strong><span>Unified profile with transaction, product, and
+                support history.</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="ind-card grocery reveal">
+        <div class="ind-icon-wrap">🛒</div>
+        <h3>Mid-Level Grocery Shops</h3>
+        <p>Daily stock intelligence, demand forecasting, and margin optimization to compete with larger chains.</p>
+        <div class="use-cases">
+          <div class="uc">
+            <div class="uc-icon"><svg viewBox="0 0 24 24">
+                <path
+                  d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z" />
+              </svg></div>
+            <div class="uc-text"><strong>Inventory Intelligence</strong><span>Auto-alerts on fast-moving SKUs, wastage
+                tracking, and reorder cues.</span></div>
+          </div>
+          <div class="uc">
+            <div class="uc-icon"><svg viewBox="0 0 24 24">
+                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+              </svg></div>
+            <div class="uc-text"><strong>Demand Forecasting</strong><span>Predict weekly demand by category using
+                seasonal and trend models.</span></div>
+          </div>
+          <div class="uc">
+            <div class="uc-icon"><svg viewBox="0 0 24 24">
+                <line x1="12" y1="1" x2="12" y2="23" />
+                <path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" />
+              </svg></div>
+            <div class="uc-text"><strong>Margin Optimisation</strong><span>SKU-level profitability analysis to cut
+                low-margin products.</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="ind-card clinic reveal">
+        <div class="ind-icon-wrap">🏥</div>
+        <h3>Clinics &amp; Healthcare</h3>
+        <p>Patient flow analytics, revenue cycle intelligence, and appointment optimisation to improve care and
+          profitability.</p>
+        <div class="use-cases">
+          <div class="uc">
+            <div class="uc-icon"><svg viewBox="0 0 24 24">
+                <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+              </svg></div>
+            <div class="uc-text"><strong>Patient Flow Analytics</strong><span>Appointment vs walk-in trends, wait time
+                analysis, peak hour heatmaps.</span></div>
+          </div>
+          <div class="uc">
+            <div class="uc-icon"><svg viewBox="0 0 24 24">
+                <rect x="3" y="4" width="18" height="18" rx="2" />
+                <path d="M16 2v4M8 2v4M3 10h18" />
+              </svg></div>
+            <div class="uc-text"><strong>Revenue Cycle Management</strong><span>Billing efficiency, insurance claim
+                tracking, payment analytics.</span></div>
+          </div>
+          <div class="uc">
+            <div class="uc-icon"><svg viewBox="0 0 24 24">
+                <polyline points="1 4 1 10 7 10" />
+                <path d="M3.51 15a9 9 0 102.13-9.36L1 10" />
+              </svg></div>
+            <div class="uc-text"><strong>Retention &amp; Follow-ups</strong><span>Identify at-risk patients and automate
+                recall campaigns.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ SECURITY ═══ -->
+  <section class="section" id="security">
+    <div class="security-grid">
+      <div class="sec-visual reveal">
+        <div class="shield-wrap">
+          <div class="shield-main">🛡️</div>
+          <div class="shield-check"><svg viewBox="0 0 24 24">
+              <polyline points="20 6 9 17 4 12" />
+            </svg></div>
+        </div>
+        <div class="sec-uptime display">99.9%</div>
+        <div class="sec-uptime-lbl">Data Availability Uptime SLA</div>
+        <div class="sec-list">
+          <div class="sec-row"><svg viewBox="0 0 24 24">
+              <rect x="3" y="11" width="18" height="11" rx="2" />
+              <path d="M7 11V7a5 5 0 0110 0v4" />
+            </svg> AES-256 Encryption at Rest</div>
+          <div class="sec-row"><svg viewBox="0 0 24 24">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            </svg> TLS 1.3 In-Transit Security</div>
+          <div class="sec-row"><svg viewBox="0 0 24 24">
+              <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
+              <circle cx="9" cy="7" r="4" />
+              <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" />
+            </svg> Role-Based Access Control</div>
+          <div class="sec-row"><svg viewBox="0 0 24 24">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            </svg> Multi-Factor Authentication</div>
+          <div class="sec-row"><svg viewBox="0 0 24 24">
+              <polyline points="1 4 1 10 7 10" />
+              <path d="M3.51 15a9 9 0 102.13-9.36L1 10" />
+            </svg> Automated Daily Backups</div>
+        </div>
+      </div>
+      <div class="sec-content reveal">
+        <div class="s-eyebrow">Data Security</div>
+        <div class="s-title display">Your Data is<br>a Fort Knox</div>
+        <p class="s-sub">Snowflake enterprise-grade warehousing with multiple layers of security, compliance, and
+          governance built in from day one, not bolted on.</p>
+        <ul class="checkfeats">
+          <li><svg viewBox="0 0 24 24">
+              <polyline points="20 6 9 17 4 12" />
+            </svg> Customer data isolated in dedicated Snowflake schemas with row-level security</li>
+          <li><svg viewBox="0 0 24 24">
+              <polyline points="20 6 9 17 4 12" />
+            </svg> Power BI reports secured via Azure AD single sign-on</li>
+          <li><svg viewBox="0 0 24 24">
+              <polyline points="20 6 9 17 4 12" />
+            </svg> End-to-end data lineage with every number traceable to its source</li>
+          <li><svg viewBox="0 0 24 24">
+              <polyline points="20 6 9 17 4 12" />
+            </svg> GDPR-ready handling with right-to-erasure support</li>
+          <li><svg viewBox="0 0 24 24">
+              <polyline points="20 6 9 17 4 12" />
+            </svg> Monthly security audits and penetration testing</li>
+        </ul>
+        <div class="comp-row">
+          <span class="cbadge blue">ISO 27001</span>
+          <span class="cbadge green">SOC 2 Type II</span>
+          <span class="cbadge gold">GDPR Ready</span>
+          <span class="cbadge blue">RBI Guidelines</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ PROCESS ═══ -->
+  <section class="section section-dark" id="process">
+    <div style="text-align:center;margin-bottom:16px">
+      <div class="s-eyebrow" style="justify-content:center">Our Workflow</div>
+      <div class="s-title display">From Raw Data<br>to Clear Insights</div>
+      <p class="s-sub" style="margin:0 auto">A seamless end-to-end journey transforming your business data into
+        actionable growth strategies.</p>
+    </div>
+    <div class="process-track">
+      <div class="process-line">
+        <div class="process-line-fill"></div>
+      </div>
+      <div class="pstep reveal">
+        <div class="pstep-num"><svg viewBox="0 0 24 24">
+            <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
+          </svg></div>
+        <h4>Requirements &amp; Data Gathering</h4>
+        <p>You share business goals and raw historical data through our secure onboarding form.</p>
+      </div>
+      <div class="pstep reveal">
+        <div class="pstep-num"><svg viewBox="0 0 24 24">
+            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+          </svg></div>
+        <h4>Data Ops &amp; Processing</h4>
+        <p>Our Data Ops team cleans, organises, and structures raw files to make them analysis-ready.</p>
+      </div>
+      <div class="pstep reveal">
+        <div class="pstep-num"><svg viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="3" />
+            <path d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14" />
+          </svg></div>
+        <h4>Data Science &amp; Analytics</h4>
+        <p>Scientists apply models to uncover deep trends and predict growth outcomes with precision.</p>
+      </div>
+      <div class="pstep reveal">
+        <div class="pstep-num"><svg viewBox="0 0 24 24">
+            <rect x="3" y="3" width="18" height="18" rx="2" />
+            <path d="M3 9h18M9 21V9" />
+          </svg></div>
+        <h4>Dashboard Development</h4>
+        <p>Insights are built into visually rich Power BI dashboards tailored to your exact requests.</p>
+      </div>
+      <div class="pstep reveal">
+        <div class="pstep-num"><svg viewBox="0 0 24 24">
+            <polyline points="22 8 13.5 16.5 8.5 11.5 1 18" />
+            <polyline points="16 8 22 8 22 14" />
+          </svg></div>
+        <h4>Delivery &amp; Reporting</h4>
+        <p>Secure dashboard links give you constant access to daily, monthly, quarterly, and yearly reports.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ STATS ═══ -->
+  <section class="section stats-section" style="padding:0">
+    <div class="stats-grid">
+      <div class="stat-cell reveal">
+        <div class="stat-num display">120+</div>
+        <div class="stat-lbl">Businesses Empowered</div>
+      </div>
+      <div class="stat-cell reveal">
+        <div class="stat-num display">₹1Cr+</div>
+        <div class="stat-lbl">Revenue Growth Attributed</div>
+      </div>
+      <div class="stat-cell reveal">
+        <div class="stat-num display">4.5B+</div>
+        <div class="stat-lbl">Data Rows Processed</div>
+      </div>
+      <div class="stat-cell reveal">
+        <div class="stat-num display">99.9%</div>
+        <div class="stat-lbl">Dashboard Uptime</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FOUNDER ═══ -->
+  <section class="section founder-section" id="founder">
+    <div class="founder-grid">
+      <div class="founder-visual">
+        <div class="founder-avatar">
+          <img src="images/Founder.jpg" alt="Akash Yadav - Founder & CEO" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+          <div class="founder-name-plate">
+            <div class="fnp-name">Akash Yadav</div>
+            <div class="fnp-role">Founder &amp; CEO · DataBroIQ</div>
+          </div>
+        </div>
+        <div class="founder-badges">
+          <div class="fbadge" style="color:var(--accent)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+            </svg>
+            Data Science Expert
+          </div>
+          <div class="fbadge" style="color:var(--green)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            </svg>
+            AI/ML Enthusiast
+          </div>
+          <div class="fbadge" style="color:var(--orange)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2L2 7l10 5 10-5-10-5z" />
+              <path d="M2 17l10 5 10-5M2 12l10 5 10-5" />
+            </svg>
+            Big Data Tools Expert
+          </div>
+        </div>
+      </div>
+      <div class="founder-content">
+        <div class="s-eyebrow">Meet the Founder</div>
+        <div class="s-title display">Built by a Data<br>Practitioner, for<br>Growing Businesses</div>
+        <div class="founder-quote">
+          <p>"Data is the competitive advantage for growing businesses. I've built intelligent analytics for FinTech,
+            Real Estate, and Marketing companies. DataBroIQ brings enterprise-grade data science to every business
+            size."</p>
+          <cite>‒ Akash Yadav, Data Scientist & Founder</cite>
+        </div>
+        <div class="founder-links">
+          <a href="mailto:mr.yadavau@gmail.com" class="flink primary">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+              <polyline points="22,6 12,13 2,6" />
+            </svg>
+            Email Akash
+          </a>
+          <a href="https://www.linkedin.com/in/iamakashyadav/" class="flink">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z" />
+              <circle cx="4" cy="4" r="2" />
+            </svg>
+            LinkedIn
+          </a>
+          <a href="tel:+918668317827" class="flink">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path
+                d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.18 6.18l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" />
+            </svg>
+            Call Us
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CONTACT / CTA ═══ -->
+  <section class="cta-section" id="contact">
+    <div class="cta-glow"></div>
+    <div style="position:relative;z-index:2">
+      <div class="s-eyebrow" style="justify-content:center">Let's Connect</div>
+      <div class="s-title display" style="font-size:clamp(2rem,3.8vw,3.2rem);color:#eef0f8;margin-bottom:16px">Your Data
+        Should<br>Work for You</div>
+      <p class="s-sub">Join 120+ businesses using DataBroIQ. Fill in your details and we'll show you what your data is
+        truly capable of.</p>
+      <div class="form-card reveal">
+        <h3>Book a Free Demo</h3>
+        <form onsubmit="handleSubmit(event)">
+          <div class="frow">
+            <div class="fgroup">
+              <label>Full Name</label>
+              <input type="text" class="finput" placeholder="e.g. Rahul Sharma" required>
+            </div>
+            <div class="fgroup">
+              <label>Business Type</label>
+              <select class="fselect" required>
+                <option value="" disabled selected>Select industry…</option>
+                <option>Banking / NBFC</option>
+                <option>Grocery / Retail</option>
+                <option>Healthcare / Clinic</option>
+                <option>E-Commerce Startup</option>
+                <option>Other Small Business</option>
+              </select>
+            </div>
+          </div>
+          <div class="frow">
+            <div class="fgroup">
+              <label>Work Email</label>
+              <input type="email" class="finput" placeholder="rahul@company.in" required>
+            </div>
+            <div class="fgroup">
+              <label>Phone Number (India)</label>
+              <div class="phone-group">
+                <span class="phone-pfx">+91</span>
+                <input type="tel" class="finput" pattern="[0-9]{10}" placeholder="90000 00000" required>
+              </div>
+            </div>
+          </div>
+          <button type="submit" class="btn-submit">
+            Book Demo with Akash
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </button>
+        </form>
+        <p class="form-privacy">
+          <svg viewBox="0 0 24 24">
+            <rect x="3" y="11" width="18" height="11" rx="2" />
+            <path d="M7 11V7a5 5 0 0110 0v4" />
+          </svg>
+          Your data is encrypted and never shared with third parties
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo" style="margin-bottom:14px">
+          <div class="logo-icon" style="width:28px;height:28px;border-radius:7px">
+            <svg viewBox="0 0 24 24" style="width:14px;height:14px;fill:none;stroke:white;stroke-width:2">
+              <path d="M3 3h7v7H3zM14 3h7v7h-7zM14 14h7v7h-7zM3 14h7v7H3z" />
+            </svg>
+          </div>
+          <span style="color:rgba(244,241,234,.85)">Data<span style="color:var(--accent)">BroIQ</span></span>
+        </div>
+        <p>Intelligent business analytics for India's growing businesses. From data to decisions with Snowflake
+          and Power BI.</p>
+        <p style="margin-top:12px;font-size:.78rem;color:rgba(244,241,234,.65)">Founded by <strong
+            style="color:rgba(244,241,234,.85)">Akash Yadav</strong> ·Nagpur, Maharashtra | mr.yadavau@gmail.com</p>
+      </div>
+      <div class="footer-col">
+        <h5>Services</h5>
+        <a href="#">Power BI Dashboards</a>
+        <a href="#">Snowflake Warehouse</a>
+        <a href="#">Data Science &amp; ML</a>
+        <a href="#">Growth Reports</a>
+      </div>
+      <div class="footer-col">
+        <h5>Industries</h5>
+        <a href="#">Banking &amp; NBFC</a>
+        <a href="#">Grocery Retail</a>
+        <a href="#">Healthcare Clinics</a>
+        <a href="#">E-Commerce</a>
+      </div>
+      <div class="footer-col">
+        <h5>Company</h5>
+        <a href="#founder">About Akash Yadav</a>
+        <a href="#">Case Studies</a>
+        <a href="#">Pricing</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 DataBroIQ. All rights reserved.</span>
+      <div class="footer-made-by">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+          <circle cx="12" cy="10" r="3" />
+        </svg>
+        Nagpur, Maharashtra, India &nbsp;·&nbsp; mr.yadavau@gmail.com
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ── Theme toggle ──
+    function toggleTheme() {
+      const html = document.documentElement;
+      html.setAttribute('data-theme', html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+      localStorage.setItem('dbroiq-theme', html.getAttribute('data-theme'));
     }
-  });
-}, { threshold: 0.1 });
-document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+    // Load saved preference
+    (function () {
+      const saved = localStorage.getItem('dbroiq-theme') ||
+        (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', saved);
+    })();
 
-// ── Smooth scroll ──
-document.querySelectorAll('a[href^="#"]').forEach(a => {
-  a.addEventListener('click', e => {
-    const t = document.querySelector(a.getAttribute('href'));
-    if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); }
-  });
-});
+    // ── Scroll reveals ──
+    const revealObs = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          setTimeout(() => e.target.classList.add('in'), i * 70);
+        }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
 
-// ── Form submit ──
-function handleSubmit(e) {
-  e.preventDefault();
-  const btn = e.target.querySelector('.btn-submit');
-  btn.textContent = '✓ Demo Booked! We\'ll be in touch shortly.';
-  btn.style.background = 'var(--green)';
-  btn.disabled = true;
-}
+    // ── Smooth scroll ──
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const t = document.querySelector(a.getAttribute('href'));
+        if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); }
+      });
+    });
 
-// ── Bar animation on load ──
-document.querySelectorAll('.bar').forEach((b, i) => { b.style.animationDelay = i * .08 + 's'; });
-</script>
+    // ── Form submit ──
+    function handleSubmit(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('.btn-submit');
+      btn.textContent = '✓ Demo Booked! We\'ll be in touch shortly.';
+      btn.style.background = 'var(--green)';
+      btn.disabled = true;
+    }
+
+    // ── Bar animation on load ──
+    document.querySelectorAll('.bar').forEach((b, i) => { b.style.animationDelay = i * .08 + 's'; });
+  </script>
 </body>
+
 </html>
